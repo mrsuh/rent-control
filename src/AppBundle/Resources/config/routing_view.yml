@@ -18,11 +18,11 @@ view.city:
     type:     annotation
 
 view.community.parse:
-    resource: "@AppBundle/Controller/View/Community/CommunityParseController.php"
+    resource: "@AppBundle/Controller/View/Community/ParseController.php"
     type:     annotation
 
 view.community.publish:
-    resource: "@AppBundle/Controller/View/Community/CommunityPublishController.php"
+    resource: "@AppBundle/Controller/View/Community/PublishController.php"
     type:     annotation
 
 view.note:

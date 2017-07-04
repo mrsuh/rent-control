@@ -4,7 +4,7 @@ namespace AppBundle\Document\Community;
 
 use ODM\Document\Document;
 
-class CommunityParse extends Document
+class Parse extends Document
 {
     private $id;
 

@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller\View\User;
 
-use AppBundle\Document\User\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -17,7 +16,7 @@ class UserController extends Controller
      */
     public function listAction()
     {
-        $repo = $this->get('odm.hot.data.mapper.factory')->init(User::class);
-        return $this->render('AppBundle:User:list.html.twig', ['list' => $repo->find()]);
+        $list = $this->get('model.user')->findAll();
+        return $this->render('AppBundle:User:list.html.twig', ['list' => $list]);
     }
 }

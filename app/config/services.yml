@@ -1,5 +1,3 @@
-# Learn more about services, parameters and containers at
-# https://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
 
@@ -12,32 +10,37 @@ services:
         autoconfigure: true
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
-        public: false
+        public: true
 
-    odm.hot.dbal:
+# odm start =========================================================
+
+    odm.dbal:
        class: ODM\DBAL
        arguments:
            - "%database.hot.host%"
            - "%database.hot.port%"
            - "%database.hot.name%"
+       public: false
 
-    odm.cold.dbal:
-       class: ODM\DBAL
-       arguments:
-           - "%database.cold.host%"
-           - "%database.cold.port%"
-           - "%database.cold.name%"
-
-    odm.hot.data.mapper.factory:
+    odm.data.mapper.factory:
        class: ODM\DocumentMapper\DataMapperFactory
        arguments:
-           - "@odm.hot.dbal"
-       public: true
+           - "@odm.dbal"
 
-    odm.cold.data.mapper.factory:
-       class: ODM\DocumentMapper\DataMapperFactory
+# odm finish ========================================================
+
+
+# user provider start ===============================================
+
+    provider.user:
+       class: AppBundle\Security\UserProvider
        arguments:
-           - "@odm.cold.dbal"
+           - '@odm.data.mapper.factory'
+
+# user provider finish ==============================================
+
+
+# model start =======================================================
 
     model.security:
        class: AppBundle\Model\Security\SecurityModel
@@ -45,10 +48,45 @@ services:
            - '@security.password_encoder'
            - '@security.token_storage'
            - '@session'
-       public: true
 
-    provider.user:
-       class: AppBundle\Security\UserProvider
+    model.blacklist.description:
+       class: AppBundle\Model\BlackList\DescriptionModel
        arguments:
-           - '@odm.hot.data.mapper.factory'
-       public: true
+           - '@odm.data.mapper.factory'
+
+    model.blacklist.person:
+       class: AppBundle\Model\BlackList\PersonModel
+       arguments:
+           - '@odm.data.mapper.factory'
+
+    model.blacklist.phone:
+       class: AppBundle\Model\BlackList\PhoneModel
+       arguments:
+           - '@odm.data.mapper.factory'
+
+    model.city:
+       class: AppBundle\Model\City\CityModel
+       arguments:
+           - '@odm.data.mapper.factory'
+
+    model.community.parse:
+       class: AppBundle\Model\Community\ParseModel
+       arguments:
+           - '@odm.data.mapper.factory'
+
+    model.community.publish:
+       class: AppBundle\Model\Community\PublishModel
+       arguments:
+           - '@odm.data.mapper.factory'
+
+    model.note:
+       class: AppBundle\Model\Note\NoteModel
+       arguments:
+           - '@odm.data.mapper.factory'
+
+    model.user:
+       class: AppBundle\Model\User\UserModel
+       arguments:
+           - '@odm.data.mapper.factory'
+
+# model finish ======================================================

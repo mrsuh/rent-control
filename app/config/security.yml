@@ -9,7 +9,6 @@ security:
         database_user:
             id: 'provider.user'
 
-
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:

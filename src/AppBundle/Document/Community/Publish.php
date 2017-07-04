@@ -4,7 +4,7 @@ namespace AppBundle\Document\Community;
 
 use ODM\Document\Document;
 
-class CommunityPublish extends Document
+class Publish extends Document
 {
     private $id;
 

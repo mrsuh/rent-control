@@ -11,11 +11,16 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class SecurityModel
 {
-
     private $password_encoder;
     private $security_token_storage;
     private $session;
 
+    /**
+     * SecurityModel constructor.
+     * @param UserPasswordEncoder $password_encoder
+     * @param TokenStorage        $security_token_storage
+     * @param Session             $session
+     */
     public function __construct(
         UserPasswordEncoder $password_encoder,
         TokenStorage $security_token_storage,
@@ -40,7 +45,6 @@ class SecurityModel
 
         return $user;
     }
-
 
     /**
      * @param User $user
