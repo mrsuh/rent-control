@@ -3,8 +3,9 @@
 namespace AppBundle\Document\User;
 
 use ODM\Document\Document;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class User extends Document
+class User extends Document implements UserInterface
 {
     private $id;
 
@@ -14,7 +15,15 @@ class User extends Document
 
     private $salt;
 
-    private $role;
+    private $roles;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->roles = [];
+    }
 
     /**
      * @return mixed
@@ -84,19 +93,27 @@ class User extends Document
     /**
      * @return mixed
      */
-    public function getRole()
+    public function getRoles()
     {
-        return $this->role;
+        return (array)$this->roles;
     }
 
     /**
-     * @param $role
+     * @param $roles
      * @return $this
      */
-    public function setRole($role)
+    public function setRoles($roles)
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function eraseCredentials()
+    {
+        return false;
     }
 }

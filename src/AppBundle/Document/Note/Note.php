@@ -66,25 +66,6 @@ class Note extends Document
     }
 
     /**
-     * @return string
-     */
-    public function getId()
-    {
-        return (string)$this->id;
-    }
-
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function getSource()

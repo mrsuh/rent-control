@@ -14,7 +14,6 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
-
     odm.hot.dbal:
        class: ODM\DBAL
        arguments:
@@ -39,3 +38,17 @@ services:
        class: ODM\DocumentMapper\DataMapperFactory
        arguments:
            - "@odm.cold.dbal"
+
+    model.security:
+       class: AppBundle\Model\Security\SecurityModel
+       arguments:
+           - '@security.password_encoder'
+           - '@security.token_storage'
+           - '@session'
+       public: true
+
+    provider.user:
+       class: AppBundle\Security\UserProvider
+       arguments:
+           - '@odm.hot.data.mapper.factory'
+       public: true

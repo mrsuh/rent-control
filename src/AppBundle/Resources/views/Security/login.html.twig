@@ -1,0 +1,43 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block content %}
+
+    {{ form_start(form) }}
+
+    {% set login_focus = not error ? 'autofocus' : false %}
+    {% set password_focus = error  ? 'autofocus' : false %}
+
+    <div class="form-login">
+
+        <div class="header">
+            <h1>Control socrent</h1>
+        </div>
+
+        <div>
+            {{ form_label(form.username, 'Имя пользователя') }}
+            {{ form_widget(form.username, {'attr': {'class': 'form-control' ~ (form.username.vars.errors|length ? ' form-error ' : ''), 'placeholder': 'mail@mail.com', 'autofocus': login_focus }}) }}
+            {{ form_errors(form.username, {'attr': {'class': 'form-control' }}) }}
+        </div>
+        <div>
+            {{ form_label(form.password, 'Пароль') }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control' ~ (form.password.vars.errors|length ? ' form-error ' : ''), 'placeholder': '********', 'autofocus': password_focus }}) }}
+            {{ form_errors(form.password) }}
+        </div>
+
+        <div>
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary form-control' }, 'label': 'Войти'}) }}
+        </div>
+
+        <div class="error">
+            {% if error %}
+                {% if 'Access denied by ip' == error %}
+                    {% set error = 'Username or password is invalid' %}
+                {% endif %}
+                {{ error|trans }}
+            {% endif %}
+        </div>
+
+    </div>
+    {{ form_end(form) }}
+
+{% endlock %}

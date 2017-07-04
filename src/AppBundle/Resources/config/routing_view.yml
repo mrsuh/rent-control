@@ -1,0 +1,39 @@
+view.black_list.description:
+    resource: "@AppBundle/Controller/View/BlackList/DescriptionController.php"
+    type:     annotation
+    prefix: '/black-lists'
+
+view.black_list.person:
+    resource: "@AppBundle/Controller/View/BlackList/PersonController.php"
+    type:     annotation
+    prefix: '/black-lists'
+
+view.black_list.phone:
+    resource: "@AppBundle/Controller/View/BlackList/PhoneController.php"
+    type:     annotation
+    prefix: '/black-lists'
+
+view.city:
+    resource: "@AppBundle/Controller/View/City/CityController.php"
+    type:     annotation
+
+view.community.parse:
+    resource: "@AppBundle/Controller/View/Community/CommunityParseController.php"
+    type:     annotation
+
+view.community.publish:
+    resource: "@AppBundle/Controller/View/Community/CommunityPublishController.php"
+    type:     annotation
+
+view.note:
+    resource: "@AppBundle/Controller/View/Note/NoteController.php"
+    type:     annotation
+
+view.security:
+    resource: "@AppBundle/Controller/View/Security/SecurityController.php"
+    type:     annotation
+
+view.user:
+    resource: "@AppBundle/Controller/View/User/UserController.php"
+    type:     annotation
+
