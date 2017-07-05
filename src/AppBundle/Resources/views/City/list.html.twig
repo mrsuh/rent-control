@@ -2,8 +2,28 @@
 
 {% block content %}
 
-    {% for l in list %}
-        {{ l.id }} <br>
-    {% endfor %}
+    <a href="{{ path('app_view_city_city_create') }}">Add</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>designation</th>
+            <th>photo</th>
+            <th>note expire days</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td>{{ l.id }}</td>
+                <td>{{ l.name }}</td>
+                <td>{{ l.designation }}</td>
+                <td>{{ l.noteExpireDays }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

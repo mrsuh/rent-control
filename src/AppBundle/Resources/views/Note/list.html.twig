@@ -2,8 +2,46 @@
 
 {% block content %}
 
-    {% for l in list %}
-        {{ l.id }} <br>
-    {% endfor %}
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>external id</th>
+                <th>source</th>
+                <th>city</th>
+                <th>community</th>
+                <th>type</th>
+                <th>photos</th>
+                <th>price</th>
+                <th>area</th>
+                <th>contacts</th>
+                <th>subways</th>
+                <th>description</th>
+                <th>published</th>
+                <th>published timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td>{{ l.id }}</td>
+                <td>{{ l.externalId }}</td>
+                <td>{{ l.source }}</td>
+                <td>{{ l.city }}</td>
+                <td>{{ 'l.community' }}</td>
+                <td>{{ l.type }}</td>
+                <td>{{ 'l.photos' }}</td>
+                <td>{{ l.price }}</td>
+                <td>{{ l.area }}</td>
+                <td>{{ 'l.contacts' }}</td>
+                <td>{{ l.timestamp }}</td>
+                <td>{{ 'l.subways' }}</td>
+                <td>{{ l.description }}</td>
+                <td>{{ l.published }}</td>
+                <td>{{ l.publishedTimestamp }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

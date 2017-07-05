@@ -1,0 +1,20 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block content %}
+
+    {{ form_start(form) }}
+
+    <div>
+        {{ form_label(form.name, 'Имя') }}
+        {{ form_widget(form.name, {'attr': {'class': 'form-control' ~ (form.name.vars.errors|length ? ' form-error ' : ''), 'placeholder': 'Клиент' }}) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <br>
+    <div>
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary form-control' }, 'label': 'Сохранить'}) }}
+        <a href="" type="button" class="btn btn-cancel">Отмена</a>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

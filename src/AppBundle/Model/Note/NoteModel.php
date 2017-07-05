@@ -19,7 +19,7 @@ class NoteModel
     }
 
     /**
-     * @return array|\ODM\Document\Document[]
+     * @return array|Note[]
      */
     public function findAll()
     {

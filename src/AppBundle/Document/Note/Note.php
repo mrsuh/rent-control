@@ -337,7 +337,7 @@ class Note extends Document
      */
     public function getPublished(): bool
     {
-        return $this->published;
+        return (bool)$this->published;
     }
 
     /**

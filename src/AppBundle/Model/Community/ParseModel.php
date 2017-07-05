@@ -19,7 +19,7 @@ class ParseModel
     }
 
     /**
-     * @return array|\ODM\Document\Document[]
+     * @return array|Parse[]
      */
     public function findAll()
     {

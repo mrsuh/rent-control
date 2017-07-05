@@ -19,7 +19,7 @@ class CityModel
     }
 
     /**
-     * @return array|\ODM\Document\Document[]
+     * @return array|City[]
      */
     public function findAll()
     {

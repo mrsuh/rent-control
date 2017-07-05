@@ -2,8 +2,21 @@
 
 {% block content %}
 
-    {% for l in list %}
-        {{ l.id }} <br>
-    {% endfor %}
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>username</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td>{{ l.id }}</td>
+                <td>{{ l.username }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

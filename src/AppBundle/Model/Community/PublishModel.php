@@ -19,7 +19,7 @@ class PublishModel
     }
 
     /**
-     * @return array|\ODM\Document\Document[]
+     * @return array|Publish[]
      */
     public function findAll()
     {
