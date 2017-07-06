@@ -19,7 +19,7 @@ class PersonModel
     }
 
     /**
-     * @return array|\ODM\Document\Document[]
+     * @return array|Person[]
      */
     public function findAll()
     {

@@ -26,7 +26,7 @@ class CityController extends Controller
     }
 
     /**
-     * @Route("/cities/create")
+     * @Route("/cities/new")
      * @Method({"GET", "POST"})
      */
     public function createAction(Request $request)

@@ -19,7 +19,7 @@ class PhoneModel
     }
 
     /**
-     * @return array|\ODM\Document\Document[]
+     * @return array|Phone[]
      */
     public function findAll()
     {

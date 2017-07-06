@@ -1,0 +1,29 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li>Black list</li>
+    <li class="active">Phone</li>
+{% endblock %}
+
+{% block content %}
+
+    <a href="{{ path('app_view_blacklist_phone_create') }}" class="btn btn-primary">New</a>
+    <br>
+    <br>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>number</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td>{{ l.number }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

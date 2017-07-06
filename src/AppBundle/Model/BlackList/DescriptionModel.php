@@ -19,7 +19,7 @@ class DescriptionModel
     }
 
     /**
-     * @return array|\ODM\Document\Document[]
+     * @return array|Description[]
      */
     public function findAll()
     {

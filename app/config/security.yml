@@ -21,12 +21,12 @@ security:
             security: true
             provider: database_user
             form_login:
-                login_path: login
+                login_path: app_view_security_security_login
                 check_path: login_check
                 default_target_path: homepage
             logout:
                 path: logout
-                target: login
+                target: app_view_security_security_login
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

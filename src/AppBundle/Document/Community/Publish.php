@@ -12,6 +12,8 @@ class Publish extends Document
 
     private $city;
 
+    private $link;
+
     private $groupId;
 
     private $userId;
@@ -96,6 +98,25 @@ class Publish extends Document
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param $link
+     * @return $this
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
 
         return $this;
     }

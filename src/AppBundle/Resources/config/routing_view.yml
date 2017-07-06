@@ -1,3 +1,6 @@
+logout:
+    path: /logout
+
 view.black_list.description:
     resource: "@AppBundle/Controller/View/BlackList/DescriptionController.php"
     type:     annotation

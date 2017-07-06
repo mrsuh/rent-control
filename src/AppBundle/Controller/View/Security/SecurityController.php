@@ -17,12 +17,12 @@ class SecurityController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/login")
-     * @Method({"GET"})
+     * @Method({"GET", "POST"})
      */
     public function loginAction(Request $request)
     {
         if ($this->getUser()) {
-            return $this->redirect('/cities');
+            return $this->redirectToRoute('app_view_city_city_list');
         }
 
         $form = $this->createForm(LoginForm::class);
@@ -36,7 +36,7 @@ class SecurityController extends Controller
                 $data     = $form->getData();
                 $username = $data['username'];
 
-                $user = $this->get('odm.hot.data.mapper.factory')->init(User::class)->findOne(['username' => $username]);
+                $user = $this->get('odm.data.mapper.factory')->init(User::class)->findOne(['username' => $username]);
 
                 if(null === $user) {
                     throw new AuthenticationException('user not found');
@@ -46,7 +46,7 @@ class SecurityController extends Controller
 
                 $this->get('model.security')->createToken($user);
 
-                return $this->redirect('/cities');
+                return $this->redirectToRoute('app_view_city_city_list');
 
             } catch (AuthenticationException $e) {
 

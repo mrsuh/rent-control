@@ -7,25 +7,25 @@
     {% set login_focus = not error ? 'autofocus' : false %}
     {% set password_focus = error  ? 'autofocus' : false %}
 
-    <div class="form-login">
+    <div class="form-login col-md-4 col-md-offset-4">
 
         <div class="header">
             <h1>Control socrent</h1>
         </div>
 
         <div>
-            {{ form_label(form.username, 'Имя пользователя') }}
-            {{ form_widget(form.username, {'attr': {'class': 'form-control' ~ (form.username.vars.errors|length ? ' form-error ' : ''), 'placeholder': 'mail@mail.com', 'autofocus': login_focus }}) }}
+            {{ form_label(form.username, 'Username') }}
+            {{ form_widget(form.username, {'attr': {'class': 'form-control' ~ (form.username.vars.errors|length ? ' form-error ' : ''), 'placeholder': 'anton.s', 'autofocus': login_focus }}) }}
             {{ form_errors(form.username, {'attr': {'class': 'form-control' }}) }}
         </div>
         <div>
-            {{ form_label(form.password, 'Пароль') }}
+            {{ form_label(form.password, 'Password') }}
             {{ form_widget(form.password, {'attr': {'class': 'form-control' ~ (form.password.vars.errors|length ? ' form-error ' : ''), 'placeholder': '********', 'autofocus': password_focus }}) }}
             {{ form_errors(form.password) }}
         </div>
-
+        <br>
         <div>
-            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary form-control' }, 'label': 'Войти'}) }}
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary form-control' }, 'label': 'Sign in'}) }}
         </div>
 
         <div class="error">
@@ -41,4 +41,4 @@
 
     {{ form_end(form) }}
 
-{% endlock %}
+{% endblock %}

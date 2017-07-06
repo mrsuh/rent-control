@@ -1,19 +1,39 @@
-<ul>
-    <li>Black list
-        <ul>
-            <li><a href="{{ path('app_view_blacklist_description_list') }}">Description</a></li>
-            <li><a href="{{ path('app_view_blacklist_person_list') }}">Person</a></li>
-            <li><a href="{{ path('app_view_blacklist_phone_list') }}">Phone</a></li>
-        </ul>
-    </li>
-    <li><a href="{{ path('app_view_city_city_list') }}">City</a></li>
-    <li>Community
-        <ul>
-            <li><a href="{{ path('app_view_community_parse_list') }}">Parse</a></li>
-            <li><a href="{{ path('app_view_community_publish_list') }}">Publish</a></li>
-        </ul>
-    </li>
-    <li><a href="{{ path('app_view_note_note_list') }}">Note</a></li>
-    <li><a href="{{ path('app_view_user_user_list') }}">User</a></li>
-</ul>
-<hr>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Control</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('app_view_note_note_list') }}">Note</a></li>
+                <li><a href="{{ path('app_view_city_city_list') }}">City</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Community <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('app_view_community_parse_list') }}">Parse</a></li>
+                        <li><a href="{{ path('app_view_community_publish_list') }}">Publish</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Black list <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('app_view_blacklist_description_list') }}">Description</a></li>
+                        <li><a href="{{ path('app_view_blacklist_person_list') }}">Person</a></li>
+                        <li><a href="{{ path('app_view_blacklist_phone_list') }}">Phone</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ path('app_view_user_user_list') }}">User</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

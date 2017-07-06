@@ -1,0 +1,26 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li>Black list</li>
+    <li><a href="{{ path('app_view_blacklist_phone_list') }}">Phone</a></li>
+    <li class="active">New</li>
+{% endblock %}
+
+{% block form %}
+
+    <div class="form-group {{ (form.number.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.number, 'Number', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.number, {'attr': {'class': 'form-control', 'placeholder': '9992144444' }}) }}
+            {{ form_errors(form.number) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button type="reset" class="btn btn-default">Cancel</button>
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary' }, 'label': 'Submit'}) }}
+        </div>
+    </div>
+
+{% endblock %}

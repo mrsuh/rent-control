@@ -1,20 +1,49 @@
 {% extends '@App/Layout/layout.html.twig' %}
 
-{% block content %}
+{% block breadcrumbs %}
+    <li><a href="">City</a></li>
+    <li class="active">New</li>
+{% endblock %}
 
-    {{ form_start(form) }}
+{% block form %}
 
-    <div>
-        {{ form_label(form.name, 'Имя') }}
-        {{ form_widget(form.name, {'attr': {'class': 'form-control' ~ (form.name.vars.errors|length ? ' form-error ' : ''), 'placeholder': 'Клиент' }}) }}
-        {{ form_errors(form.name) }}
+    <div class="form-group {{ (form.name.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.name, 'Name', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Saint Petersburg' }}) }}
+            {{ form_errors(form.name) }}
+        </div>
     </div>
-    <br>
-    <div>
-        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary form-control' }, 'label': 'Сохранить'}) }}
-        <a href="" type="button" class="btn btn-cancel">Отмена</a>
+
+    <div class="form-group {{ (form.designation.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.designation, 'Designation', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.designation, {'attr': {'class': 'form-control', 'placeholder': 'spb' }}) }}
+            {{ form_errors(form.designation) }}
+        </div>
     </div>
 
-    {{ form_end(form) }}
+    <div class="form-group {{ (form.photo.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.photo, 'Photo', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.photo, {'attr': {'class': 'form-control', 'placeholder': 'http://link.png' }}) }}
+            {{ form_errors(form.photo) }}
+        </div>
+    </div>
+
+    <div class="form-group {{ (form.note_expire_days.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.note_expire_days, 'Note_expire_days', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.note_expire_days, {'attr': {'class': 'form-control', 'placeholder': '12' }}) }}
+            {{ form_errors(form.note_expire_days) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button type="reset" class="btn btn-default">Cancel</button>
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary' }, 'label': 'Submit'}) }}
+        </div>
+    </div>
 
 {% endblock %}
