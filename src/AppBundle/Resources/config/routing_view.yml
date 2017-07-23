@@ -20,13 +20,13 @@ view.city:
     resource: "@AppBundle/Controller/View/City/CityController.php"
     type:     annotation
 
-view.community.parse:
-    resource: "@AppBundle/Controller/View/Community/ParseController.php"
-    type:     annotation
-
-view.community.publish:
-    resource: "@AppBundle/Controller/View/Community/PublishController.php"
-    type:     annotation
+#view.community.parse:
+#    resource: "@AppBundle/Controller/View/Community/ParseController.php"
+#    type:     annotation
+#
+#view.community.publish:
+#    resource: "@AppBundle/Controller/View/Community/PublishController.php"
+#    type:     annotation
 
 view.note:
     resource: "@AppBundle/Controller/View/Note/NoteController.php"

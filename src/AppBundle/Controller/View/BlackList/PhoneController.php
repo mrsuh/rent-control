@@ -2,14 +2,15 @@
 
 namespace AppBundle\Controller\View\BlackList;
 
-use AppBundle\Document\BlackList\Phone;
+use AppBundle\Document\BlackList\Record;
 use AppBundle\Exception\AppException;
-use AppBundle\Form\BlackList\Phone\CreateForm;
+use AppBundle\Form\BlackList\CreateForm;
 use AppBundle\Session\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PhoneController extends Controller
 {
@@ -31,13 +32,52 @@ class PhoneController extends Controller
      */
     public function createAction(Request $request)
     {
-        $form = $this->createForm(CreateForm::class, new Phone());
+        $form = $this->createForm(CreateForm::class, (new Record())->setType(Record::TYPE_PHONE));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
 
                 $this->get('model.blacklist.phone')->create($form->getData());
+
+                $this->addFlash(Message::SUCCESS, 'Success');
+
+                return $this->redirectToRoute('app_view_blacklist_phone_list');
+            } catch (AppException $e) {
+                $this->addFlash(Message::WARNING, $e->getMessage());
+            } catch (\Exception $e) {
+                $this->get('logger')->error($e->getMessage());
+                $this->addFlash(Message::WARNING, 'An error has occurred');
+            }
+        }
+
+        return $this->render(
+            'AppBundle:BlackList/Phone:item.html.twig',
+            [
+                'form' => $form->createView()
+            ]);
+    }
+
+    /**
+     * @Route("/phones/{record_id}")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction($record_id, Request $request)
+    {
+        $record = $this->get('model.blacklist.phone')->findOneById($record_id);
+
+        if(null === $record) {
+
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(CreateForm::class, $record);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+
+                $this->get('model.blacklist.phone')->update($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 

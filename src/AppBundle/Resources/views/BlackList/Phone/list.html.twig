@@ -14,13 +14,15 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>number</th>
+            <th>id</th>
+            <th>text</th>
         </tr>
         </thead>
         <tbody>
         {% for l in list %}
             <tr>
-                <td>{{ l.number }}</td>
+                <td><a href="{{ path('app_view_blacklist_phone_edit', {'record_id': l.id}) }}">{{ l.id }}</a></td>
+                <td>{{ l.text }}</td>
             </tr>
         {% endfor %}
         </tbody>

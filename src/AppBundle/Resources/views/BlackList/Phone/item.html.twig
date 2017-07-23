@@ -3,16 +3,16 @@
 {% block breadcrumbs %}
     <li>Black list</li>
     <li><a href="{{ path('app_view_blacklist_phone_list') }}">Phone</a></li>
-    <li class="active">New</li>
+    <li class="active">{{ form.vars.value.id ? 'Edit' : 'New' }}</li>
 {% endblock %}
 
 {% block form %}
 
-    <div class="form-group {{ (form.number.vars.errors|length ? 'has-error' : '') }}">
-        {{ form_label(form.number, 'Number', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+    <div class="form-group {{ (form.text.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.text, 'Text', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
         <div class="col-lg-10">
-            {{ form_widget(form.number, {'attr': {'class': 'form-control', 'placeholder': '9992144444' }}) }}
-            {{ form_errors(form.number) }}
+            {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'description' }}) }}
+            {{ form_errors(form.text) }}
         </div>
     </div>
 

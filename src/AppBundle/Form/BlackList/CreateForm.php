@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form\BlackList\Phone;
+namespace AppBundle\Form\BlackList;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -14,20 +14,20 @@ class CreateForm extends AbstractType
     {
         $builder
             ->add(
-            'number',
-            TextType::class,
-            [
-                'required'    => true,
-                'constraints' => [new NotBlank()]
-            ]
-        )->add(
-            'submit',
-            SubmitType::class
-        );
+                'text',
+                TextType::class,
+                [
+                    'required'    => true,
+                    'constraints' => [new NotBlank()]
+                ]
+            )->add(
+                'submit',
+                SubmitType::class
+            );
     }
 
     public function getName()
     {
-        return 'phone';
+        return 'city';
     }
 }

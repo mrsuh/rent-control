@@ -2,49 +2,23 @@
 
 namespace AppBundle\Model\BlackList;
 
-use AppBundle\Document\BlackList\Phone;
-use ODM\DocumentMapper\DataMapperFactory;
+use AppBundle\Document\BlackList\Record;
 
-class PhoneModel
+class PhoneModel extends BlackListModel
 {
-    private $dm_phone;
-
     /**
-     * PhoneModel constructor.
-     * @param DataMapperFactory $dm
+     * @return null|Record
      */
-    public function __construct(DataMapperFactory $dm)
+    public function findOneById($id)
     {
-        $this->dm_phone = $dm->init(Phone::class);
+        return $this->dm_black_list->findOne(['_id' => $id,'type' => Record::TYPE_PHONE]);
     }
 
     /**
-     * @return array|Phone[]
+     * @return array|Record[]
      */
     public function findAll()
     {
-        return $this->dm_phone->find();
-    }
-
-    /**
-     * @param Phone $obj
-     * @return Phone
-     */
-    public function create(Phone $obj)
-    {
-        $this->dm_phone->insert($obj);
-
-        return $obj;
-    }
-
-    /**
-     * @param Phone $obj
-     * @return Phone
-     */
-    public function update(Phone $obj)
-    {
-        $this->dm_phone->update($obj);
-
-        return $obj;
+        return $this->dm_black_list->find(['type' => Record::TYPE_PHONE]);
     }
 }

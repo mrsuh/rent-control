@@ -4,21 +4,24 @@ namespace AppBundle\Document\BlackList;
 
 use ODM\Document\Document;
 
-class Description extends Document
+/**
+ * @ODM\Collection(name="black_list_record")
+ */
+class Record extends Document
 {
-    private $id;
-
-    private $text;
-
-    private $description;
+    const TYPE_PHONE = 1;
+    const TYPE_PERSON = 2;
+    const TYPE_DESCRIPTION = 3;
 
     /**
-     * @return mixed
+     * @ODM\Field(name="text", type="string")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $text;
+
+    /**
+     * @ODM\Field(name="type", type="integer")
+     */
+    private $type;
 
     /**
      * @return mixed
@@ -42,18 +45,18 @@ class Description extends Document
     /**
      * @return mixed
      */
-    public function getDescription()
+    public function getType()
     {
-        return $this->description;
+        return $this->type;
     }
 
     /**
-     * @param $description
+     * @param $type
      * @return $this
      */
-    public function setDescription($description)
+    public function setType($type)
     {
-        $this->description = $description;
+        $this->type = $type;
 
         return $this;
     }

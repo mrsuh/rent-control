@@ -22,8 +22,8 @@ services:
            - "%database.hot.name%"
        public: false
 
-    odm.data.mapper.factory:
-       class: ODM\DocumentMapper\DataMapperFactory
+    dm.default:
+       class: ODM\DocumentManager\DocumentManagerFactory
        arguments:
            - "@odm.dbal"
 
@@ -35,7 +35,7 @@ services:
     provider.user:
        class: AppBundle\Security\UserProvider
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
 # user provider finish ==============================================
 
@@ -52,41 +52,41 @@ services:
     model.blacklist.description:
        class: AppBundle\Model\BlackList\DescriptionModel
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
     model.blacklist.person:
        class: AppBundle\Model\BlackList\PersonModel
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
     model.blacklist.phone:
        class: AppBundle\Model\BlackList\PhoneModel
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
     model.city:
        class: AppBundle\Model\City\CityModel
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
     model.community.parse:
        class: AppBundle\Model\Community\ParseModel
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
     model.community.publish:
        class: AppBundle\Model\Community\PublishModel
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
     model.note:
        class: AppBundle\Model\Note\NoteModel
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
     model.user:
        class: AppBundle\Model\User\UserModel
        arguments:
-           - '@odm.data.mapper.factory'
+           - '@dm.default'
 
 # model finish ======================================================

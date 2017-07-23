@@ -2,49 +2,23 @@
 
 namespace AppBundle\Model\BlackList;
 
-use AppBundle\Document\BlackList\Description;
-use ODM\DocumentMapper\DataMapperFactory;
+use AppBundle\Document\BlackList\Record;
 
-class DescriptionModel
+class DescriptionModel extends BlackListModel
 {
-    private $dm_description;
-
     /**
-     * DescriptionModel constructor.
-     * @param DataMapperFactory $dm
+     * @return null|Record
      */
-    public function __construct(DataMapperFactory $dm)
+    public function findOneById($id)
     {
-        $this->dm_description = $dm->init(Description::class);
+        return $this->dm_black_list->findOne(['_id' => $id,'type' => Record::TYPE_DESCRIPTION]);
     }
 
     /**
-     * @return array|Description[]
+     * @return array|Record[]
      */
     public function findAll()
     {
-        return $this->dm_description->find();
-    }
-
-    /**
-     * @param Description $obj
-     * @return Description
-     */
-    public function create(Description $obj)
-    {
-        $this->dm_description->insert($obj);
-
-        return $obj;
-    }
-
-    /**
-     * @param Description $obj
-     * @return Description
-     */
-    public function update(Description $obj)
-    {
-        $this->dm_description->update($obj);
-
-        return $obj;
+        return $this->dm_black_list->find(['type' => Record::TYPE_DESCRIPTION]);
     }
 }

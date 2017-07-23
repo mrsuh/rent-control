@@ -2,49 +2,23 @@
 
 namespace AppBundle\Model\BlackList;
 
-use AppBundle\Document\BlackList\Person;
-use ODM\DocumentMapper\DataMapperFactory;
+use AppBundle\Document\BlackList\Record;
 
-class PersonModel
+class PersonModel extends BlackListModel
 {
-    private $dm_person;
-
     /**
-     * PersonModel constructor.
-     * @param DataMapperFactory $dm
+     * @return null|Record
      */
-    public function __construct(DataMapperFactory $dm)
+    public function findOneById($id)
     {
-        $this->dm_person = $dm->init(Person::class);
+        return $this->dm_black_list->findOne(['_id' => $id,'type' => Record::TYPE_PERSON]);
     }
 
     /**
-     * @return array|Person[]
+     * @return array|Record[]
      */
     public function findAll()
     {
-        return $this->dm_person->find();
-    }
-
-    /**
-     * @param Person $obj
-     * @return Person
-     */
-    public function create(Person $obj)
-    {
-        $this->dm_person->insert($obj);
-
-        return $obj;
-    }
-
-    /**
-     * @param Person $obj
-     * @return Person
-     */
-    public function update(Person $obj)
-    {
-        $this->dm_person->update($obj);
-
-        return $obj;
+        return $this->dm_black_list->find(['type' => Record::TYPE_PERSON]);
     }
 }

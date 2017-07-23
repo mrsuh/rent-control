@@ -4,36 +4,30 @@ namespace AppBundle\Document\City;
 
 use ODM\Document\Document;
 
+/**
+ * @ODM\Collection(name="subway")
+ */
 class Subway extends Document
 {
-    private $id;
-
+    /**
+     * @ODM\Field(name="name", type="string")
+     */
     private $name;
 
+    /**
+     * @ODM\Field(name="city", type="integer")
+     */
     private $city;
 
+    /**
+     * @ODM\Field(name="regexp", type="string")
+     */
     private $regexp;
 
+    /**
+     * @ODM\Field(name="color", type="string")
+     */
     private $color;
-
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return (int)$this->id;
-    }
-
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * @return mixed

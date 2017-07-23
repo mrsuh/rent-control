@@ -3,7 +3,7 @@
 namespace AppBundle\Security;
 
 use AppBundle\Document\User\User;
-use ODM\DocumentMapper\DataMapperFactory;
+use ODM\DocumentManager\DocumentManagerFactory;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -13,7 +13,7 @@ class UserProvider implements UserProviderInterface
 {
     private $dm_user;
 
-    public function __construct(DataMapperFactory $dm)
+    public function __construct(DocumentManagerFactory $dm)
     {
         $this->dm_user = $dm->init(User::class);
     }

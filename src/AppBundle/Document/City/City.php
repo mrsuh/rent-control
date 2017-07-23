@@ -4,25 +4,25 @@ namespace AppBundle\Document\City;
 
 use ODM\Document\Document;
 
+/**
+ * @ODM\Collection(name="city")
+ */
 class City extends Document
 {
-    private $id;
-
+    /**
+     * @ODM\Field(name="name", type="string")
+     */
     private $name;
 
-    private $designation;
-
-    private $photo;
-
-    private $noteExpireDays;
+    /**
+     * @ODM\Field(name="short_name", type="string")
+     */
+    private $short_name;
 
     /**
-     * @return mixed
+     * @ODM\Field(name="picture_link", type="string")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $picture_link;
 
     /**
      * @return mixed
@@ -46,18 +46,18 @@ class City extends Document
     /**
      * @return mixed
      */
-    public function getDesignation()
+    public function getPictureLink()
     {
-        return $this->designation;
+        return $this->picture_link;
     }
 
     /**
-     * @param $designation
+     * @param $picture_link
      * @return $this
      */
-    public function setDesignation($designation)
+    public function setPictureLink($picture_link)
     {
-        $this->designation = $designation;
+        $this->picture_link = $picture_link;
 
         return $this;
     }
@@ -65,37 +65,18 @@ class City extends Document
     /**
      * @return mixed
      */
-    public function getPhoto()
+    public function getShortName()
     {
-        return $this->photo;
+        return $this->short_name;
     }
 
     /**
-     * @param $photo
+     * @param $short_name
      * @return $this
      */
-    public function setPhoto($photo)
+    public function setShortName($short_name)
     {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNoteExpireDays()
-    {
-        return $this->noteExpireDays;
-    }
-
-    /**
-     * @param $noteExpireDays
-     * @return $this
-     */
-    public function setNoteExpireDays($noteExpireDays)
-    {
-        $this->noteExpireDays = $noteExpireDays;
+        $this->short_name = $short_name;
 
         return $this;
     }
