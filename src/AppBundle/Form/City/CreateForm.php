@@ -21,21 +21,14 @@ class CreateForm extends AbstractType
                     'constraints' => [new NotBlank()]
                 ]
             )->add(
-                'designation',
+                'short_name',
                 TextType::class,
                 [
                     'required'    => true,
                     'constraints' => [new NotBlank()]
                 ]
             )->add(
-                'photo',
-                TextType::class,
-                [
-                    'required'    => true,
-                    'constraints' => [new NotBlank()]
-                ]
-            )->add(
-                'note_expire_days',
+                'picture_link',
                 TextType::class,
                 [
                     'required'    => true,

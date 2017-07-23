@@ -3,7 +3,8 @@
 namespace AppBundle\Model\City;
 
 use AppBundle\Document\City\City;
-use ODM\DocumentMapper\DataMapperFactory;
+use MongoDB\BSON\ObjectID;
+use ODM\DocumentManager\DocumentManagerFactory;
 
 class CityModel
 {
@@ -11,9 +12,9 @@ class CityModel
 
     /**
      * CityModel constructor.
-     * @param DataMapperFactory $dm
+     * @param DocumentManagerFactory $dm
      */
-    public function __construct(DataMapperFactory $dm)
+    public function __construct(DocumentManagerFactory $dm)
     {
         $this->dm_city = $dm->init(City::class);
     }
@@ -24,6 +25,15 @@ class CityModel
     public function findAll()
     {
         return $this->dm_city->find();
+    }
+
+    /**
+     * @param $city_id
+     * @return null|\ODM\Document\Document
+     */
+    public function findOneById($city_id)
+    {
+        return $this->dm_city->findOne(['_id' => $city_id]);
     }
 
     /**
