@@ -4,6 +4,9 @@ namespace AppBundle\Document\Note;
 
 use ODM\Document\Document;
 
+/**
+ * @ODM\Collection(name="note")
+ */
 class Note extends Document
 {
     const ROOM   = 0;
@@ -14,74 +17,78 @@ class Note extends Document
     const STUDIO = 5;
     const ERR    = 6;
 
-    const VK_COMMENT = 'vk.com:comment';
-    const VK_WALL    = 'vk.com:wall';
-
-    private $id;
-
+    /**
+     * @ODM\Field(name="external_id", type="string")
+     */
     private $external_id;
 
-    private $source;
-
+    /**
+     * @ODM\Field(name="city", type="integer")
+     */
     private $city;
 
-    private $community;
-
+    /**
+     * @ODM\Field(name="type", type="integer")
+     */
     private $type;
 
+    /**
+     * @ODM\Field(name="photos", type="AppBundle\Document\Note\Photo[]")
+     */
     private $photos;
 
+    /**
+     * @ODM\Field(name="price", type="float")
+     */
     private $price;
 
+    /**
+     * @ODM\Field(name="area", type="float")
+     */
     private $area;
 
-    private $contacts;
+    /**
+     * @ODM\Field(name="contact", type="AppBundle\Document\Note\Contact")
+     */
+    private $contact;
 
+    /**
+     * @ODM\Field(name="timestamp", type="integer")
+     */
     private $timestamp;
 
+    /**
+     * @ODM\Field(name="subways", type="array")
+     */
     private $subways;
 
+    /**
+     * @ODM\Field(name="description", type="string")
+     */
     private $description;
 
-    private $description_hash;
-
-    private $photo_hashes;
-
+    /**
+     * @ODM\Field(name="published", type="integer")
+     */
     private $published;
 
-    private $publishedTimestamp;
+    /**
+     * @ODM\Field(name="published_timestamp", type="integer")
+     */
+    private $published_timestamp;
 
+    /**
+     * Note constructor.
+     */
     public function __construct()
     {
-        $this->photos    = ['low' => [], 'high' => []];
-        $this->contacts  = ['phones' => [], 'person' => ['name' => null, 'link' => null, 'write' => null]];
         $this->subways   = [];
-        $this->community = ['name' => null, 'link' => null];
         $this->published = false;
     }
 
     public function initId()
     {
         $this->id = Date('U') . $this->external_id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSource()
-    {
-        return $this->source;
-    }
-
-    /**
-     * @param $source
-     * @return $this
-     */
-    public function setSource($source)
-    {
-        $this->source = $source;
-
-        return $this;
     }
 
     /**
@@ -104,20 +111,20 @@ class Note extends Document
     }
 
     /**
-     * @return array
+     * @return \AppBundle\Document\Note\Photo[]
      */
-    public function getPhotos(): array
+    public function getPhotos()
     {
         return $this->photos;
     }
 
     /**
-     * @param array $photos
+     * @param Photo $photo
      * @return $this
      */
-    public function setPhotos(array $photos)
+    public function addPhoto(Photo $photo)
     {
-        $this->photos = $photos;
+        $this->photos[] = $photo;
 
         return $this;
     }
@@ -156,25 +163,6 @@ class Note extends Document
     public function setArea($area)
     {
         $this->area = $area;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getContacts(): array
-    {
-        return $this->contacts;
-    }
-
-    /**
-     * @param array $contacts
-     * @return $this
-     */
-    public function setContacts(array $contacts)
-    {
-        $this->contacts = $contacts;
 
         return $this;
     }
@@ -232,26 +220,6 @@ class Note extends Document
     public function setDescription($description)
     {
         $this->description      = $description;
-        $this->description_hash = md5($description);
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getCommunity(): array
-    {
-        return $this->community;
-    }
-
-    /**
-     * @param array $community
-     * @return $this
-     */
-    public function setCommunity(array $community)
-    {
-        $this->community = $community;
 
         return $this;
     }
@@ -295,44 +263,6 @@ class Note extends Document
     }
 
     /**
-     * @return mixed
-     */
-    public function getDescriptionHash()
-    {
-        return $this->description_hash;
-    }
-
-    /**
-     * @param $description_hash
-     * @return $this
-     */
-    public function setDescriptionHash($description_hash)
-    {
-        $this->description_hash = $description_hash;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPhotoHashes()
-    {
-        return $this->photo_hashes;
-    }
-
-    /**
-     * @param $photo_hashes
-     * @return $this
-     */
-    public function setPhotoHashes($photo_hashes)
-    {
-        $this->photo_hashes = $photo_hashes;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function getPublished(): bool
@@ -354,18 +284,37 @@ class Note extends Document
     /**
      * @return mixed
      */
-    public function getPublishedTimestamp()
+    public function getContact()
     {
-        return $this->publishedTimestamp;
+        return $this->contact;
     }
 
     /**
-     * @param $publishedTimestamp
+     * @param Contact $contact
      * @return $this
      */
-    public function setPublishedTimestamp($publishedTimestamp)
+    public function setContact(Contact $contact)
     {
-        $this->publishedTimestamp = $publishedTimestamp;
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublishedTimestamp()
+    {
+        return $this->published_timestamp;
+    }
+
+    /**
+     * @param $published_timestamp
+     * @return $this
+     */
+    public function setPublishedTimestamp($published_timestamp)
+    {
+        $this->published_timestamp = $published_timestamp;
 
         return $this;
     }

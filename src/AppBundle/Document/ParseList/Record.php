@@ -1,13 +1,13 @@
 <?php
 
-namespace AppBundle\Document\Community;
+namespace AppBundle\Document\ParseList;
 
 use ODM\Document\Document;
 
 /**
- * @ODM\Collection(name="community_publish")
+ * @ODM\Collection(name="parse_list_record")
  */
-class Publish extends Document
+class Record extends Document
 {
     /**
      * @ODM\Field(name="name", type="string")
@@ -25,14 +25,9 @@ class Publish extends Document
     private $link;
 
     /**
-     * @ODM\Field(name="group_id", type="string")
+     * @ODM\Field(name="sources", type="AppBundle\Document\ParseList\Source[]")
      */
-    private $groupId;
-
-    /**
-     * @ODM\Field(name="user_id", type="string")
-     */
-    private $userId;
+    private $sources;
 
     /**
      * @return mixed
@@ -75,44 +70,6 @@ class Publish extends Document
     /**
      * @return mixed
      */
-    public function getGroupId()
-    {
-        return $this->groupId;
-    }
-
-    /**
-     * @param $groupId
-     * @return $this
-     */
-    public function setGroupId($groupId)
-    {
-        $this->groupId = $groupId;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param $userId
-     * @return $this
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getLink()
     {
         return $this->link;
@@ -127,5 +84,39 @@ class Publish extends Document
         $this->link = $link;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSources()
+    {
+        return $this->sources;
+    }
+
+    /**
+     * @param Source $source
+     * @return $this
+     */
+    public function addSource(Source $source)
+    {
+        $this->sources[] = $source;
+
+        return $this;
+    }
+
+    /**
+     * @param $id
+     * @return null|Source
+     */
+    public function findSourceById($id)
+    {
+        foreach($this->sources as $source) {
+            if($source->getId() === $id) {
+                return $source;
+            }
+        }
+
+        return null;
     }
 }

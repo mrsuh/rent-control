@@ -2,7 +2,7 @@
 
 {% block breadcrumbs %}
     <li><a href="">City</a></li>
-    <li class="active">{{ form.vars.value.id ? form.vars.value.name : 'New' }}</li>
+    <li class="active">{{ form.vars.value.id ? 'Edit' : 'New' }}</li>
 {% endblock %}
 
 {% block form %}

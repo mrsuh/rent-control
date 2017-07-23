@@ -1,32 +1,30 @@
 logout:
     path: /logout
 
-view.black_list.description:
-    resource: "@AppBundle/Controller/View/BlackList/DescriptionController.php"
+view.black_list:
+    resource: "@AppBundle/Controller/View/BlackList/BlackListController.php"
     type:     annotation
-    prefix: '/black-lists'
-
-view.black_list.person:
-    resource: "@AppBundle/Controller/View/BlackList/PersonController.php"
-    type:     annotation
-    prefix: '/black-lists'
-
-view.black_list.phone:
-    resource: "@AppBundle/Controller/View/BlackList/PhoneController.php"
-    type:     annotation
-    prefix: '/black-lists'
+    prefix: '/black-list/records'
 
 view.city:
     resource: "@AppBundle/Controller/View/City/CityController.php"
     type:     annotation
+    prefix: '/cities'
 
-#view.community.parse:
-#    resource: "@AppBundle/Controller/View/Community/ParseController.php"
-#    type:     annotation
-#
-#view.community.publish:
-#    resource: "@AppBundle/Controller/View/Community/PublishController.php"
-#    type:     annotation
+view.parse_list:
+    resource: "@AppBundle/Controller/View/ParseList/ParseListController.php"
+    type:     annotation
+    prefix: '/parse-list/records'
+
+view.parse_list.source:
+    resource: "@AppBundle/Controller/View/ParseList/SourceController.php"
+    type:     annotation
+    prefix: '/parse-list/records/{record_id}/sources'
+
+view.publish_list:
+    resource: "@AppBundle/Controller/View/PublishList/PublishListController.php"
+    type:     annotation
+    prefix: '/publish-list/records'
 
 view.note:
     resource: "@AppBundle/Controller/View/Note/NoteController.php"

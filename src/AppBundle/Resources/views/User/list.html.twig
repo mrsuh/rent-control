@@ -1,8 +1,12 @@
 {% extends '@App/Layout/layout.html.twig' %}
 
+{% block breadcrumbs %}
+    <li class="active">User</li>
+{% endblock %}
+
 {% block content %}
 
-    <table>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>id</th>

@@ -3,11 +3,13 @@
 namespace AppBundle\Model\City;
 
 use AppBundle\Document\City\City;
-use MongoDB\BSON\ObjectID;
 use ODM\DocumentManager\DocumentManagerFactory;
 
 class CityModel
 {
+    /**
+     * @var \ODM\DocumentManager\DocumentManager
+     */
     private $dm_city;
 
     /**

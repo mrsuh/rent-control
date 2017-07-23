@@ -4,27 +4,29 @@ namespace AppBundle\Document\Community;
 
 use ODM\Document\Document;
 
+/**
+ * @ODM\Collection(name="community_parse")
+ */
 class Parse extends Document
 {
-    private $id;
-
+    /**
+     * @ODM\Field(name="name", type="string")
+     */
     private $name;
 
+    /**
+     * @ODM\Field(name="city", type="integer")
+     */
     private $city;
 
+    /**
+     * @ODM\Field(name="links", type="string[]")
+     */
     private $links;
 
     public function __construct()
     {
         $this->links = [];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

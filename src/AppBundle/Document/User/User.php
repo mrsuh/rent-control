@@ -5,16 +5,29 @@ namespace AppBundle\Document\User;
 use ODM\Document\Document;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @ODM\Collection(name="user")
+ */
 class User extends Document implements UserInterface
 {
-    private $id;
-
+    /**
+     * @ODM\Field(name="username", type="string")
+     */
     private $username;
 
+    /**
+     * @ODM\Field(name="password", type="string")
+     */
     private $password;
 
+    /**
+     * @ODM\Field(name="salt", type="string")
+     */
     private $salt;
 
+    /**
+     * @ODM\Field(name="roles", type="string[]")
+     */
     private $roles;
 
     /**
@@ -23,14 +36,6 @@ class User extends Document implements UserInterface
     public function __construct()
     {
         $this->roles = [];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

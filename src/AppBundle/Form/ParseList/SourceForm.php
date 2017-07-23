@@ -1,39 +1,44 @@
 <?php
 
-namespace AppBundle\Form\BlackList;
+namespace AppBundle\Form\ParseList;
 
-use AppBundle\Document\BlackList\Record;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AppBundle\Document\ParseList\Source;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class CreateForm extends AbstractType
+class SourceForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add(
-                'text',
-                TextType::class,
-                [
-                    'required'    => true,
-                    'constraints' => [new NotBlank()]
-                ]
-            )->add(
                 'type',
                 ChoiceType::class,
                 [
                     'required'    => true,
                     'constraints' => [new NotBlank()],
                     'choices'     => [
-                        'phone'       => Record::TYPE_PHONE,
-                        'person'      => Record::TYPE_PERSON,
-                        'description' => Record::TYPE_DESCRIPTION
+                        Source::TYPE_VK_COMMENT => Source::TYPE_VK_COMMENT,
+                        Source::TYPE_VK_WALL    => Source::TYPE_VK_WALL,
                     ]
-
+                ]
+            )->add(
+                'link',
+                TextType::class,
+                [
+                    'required'    => true,
+                    'constraints' => [new NotBlank()]
+                ]
+            )->add(
+                'parameters',
+                TextType::class,
+                [
+                    'required'    => true,
+                    'constraints' => [new NotBlank()]
                 ]
             )->add(
                 'submit',
@@ -43,6 +48,6 @@ class CreateForm extends AbstractType
 
     public function getName()
     {
-        return 'city';
+        return 'parse';
     }
 }

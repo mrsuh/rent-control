@@ -3,7 +3,7 @@
 namespace AppBundle\Model\Note;
 
 use AppBundle\Document\Note\Note;
-use ODM\DocumentMapper\DataMapperFactory;
+use ODM\DocumentManager\DocumentManagerFactory;
 
 class NoteModel
 {
@@ -11,9 +11,9 @@ class NoteModel
 
     /**
      * NoteModel constructor.
-     * @param DataMapperFactory $dm
+     * @param DocumentManagerFactory $dm
      */
-    public function __construct(DataMapperFactory $dm)
+    public function __construct(DocumentManagerFactory $dm)
     {
         $this->dm_note = $dm->init(Note::class);
     }

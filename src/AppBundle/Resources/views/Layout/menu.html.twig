@@ -12,23 +12,11 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li><a href="{{ path('app_view_parselist_parselist_list') }}">Parse list</a></li>
+                <li><a href="{{ path('app_view_publishlist_publishlist_list') }}">Publish list</a></li>
+                <li><a href="{{ path('app_view_blacklist_blacklist_list') }}">Black list</a></li>
                 <li><a href="{{ path('app_view_note_note_list') }}">Note</a></li>
                 <li><a href="{{ path('app_view_city_city_list') }}">City</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Community <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('app_view_community_parse_list') }}">Parse</a></li>
-                        <li><a href="{{ path('app_view_community_publish_list') }}">Publish</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Black list <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('app_view_blacklist_description_list') }}">Description</a></li>
-                        <li><a href="{{ path('app_view_blacklist_person_list') }}">Person</a></li>
-                        <li><a href="{{ path('app_view_blacklist_phone_list') }}">Phone</a></li>
-                    </ul>
-                </li>
                 <li><a href="{{ path('app_view_user_user_list') }}">User</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

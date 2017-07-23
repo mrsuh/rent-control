@@ -1,13 +1,13 @@
 <?php
 
-namespace AppBundle\Document\Community;
+namespace AppBundle\Document\PublishList;
 
 use ODM\Document\Document;
 
 /**
  * @ODM\Collection(name="community_publish")
  */
-class Publish extends Document
+class Record extends Document
 {
     /**
      * @ODM\Field(name="name", type="string")
@@ -15,24 +15,24 @@ class Publish extends Document
     private $name;
 
     /**
-     * @ODM\Field(name="city", type="string")
-     */
-    private $city;
-
-    /**
      * @ODM\Field(name="link", type="string")
      */
     private $link;
 
     /**
+     * @ODM\Field(name="city", type="string")
+     */
+    private $city;
+
+    /**
      * @ODM\Field(name="group_id", type="string")
      */
-    private $groupId;
+    private $group_id;
 
     /**
      * @ODM\Field(name="user_id", type="string")
      */
-    private $userId;
+    private $user_id;
 
     /**
      * @return mixed
@@ -75,18 +75,34 @@ class Publish extends Document
     /**
      * @return mixed
      */
-    public function getGroupId()
+    public function getLink()
     {
-        return $this->groupId;
+        return $this->link;
     }
 
     /**
-     * @param $groupId
+     * @param mixed $link
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGroupId()
+    {
+        return $this->group_id;
+    }
+
+    /**
+     * @param $group_id
      * @return $this
      */
-    public function setGroupId($groupId)
+    public function setGroupId($group_id)
     {
-        $this->groupId = $groupId;
+        $this->group_id = $group_id;
 
         return $this;
     }
@@ -96,35 +112,16 @@ class Publish extends Document
      */
     public function getUserId()
     {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
-     * @param $userId
+     * @param $user_id
      * @return $this
      */
-    public function setUserId($userId)
+    public function setUserId($user_id)
     {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param $link
-     * @return $this
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
+        $this->user_id = $user_id;
 
         return $this;
     }

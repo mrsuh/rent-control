@@ -3,7 +3,7 @@
 namespace AppBundle\Model\User;
 
 use AppBundle\Document\User\User;
-use ODM\DocumentMapper\DataMapperFactory;
+use ODM\DocumentManager\DocumentManagerFactory;
 
 class UserModel
 {
@@ -11,9 +11,9 @@ class UserModel
 
     /**
      * UserModel constructor.
-     * @param DataMapperFactory $dm
+     * @param DocumentManagerFactory $dm
      */
-    public function __construct(DataMapperFactory $dm)
+    public function __construct(DocumentManagerFactory $dm)
     {
         $this->dm_user = $dm->init(User::class);
     }

@@ -14,9 +14,8 @@
         <thead>
         <tr>
             <th>name</th>
-            <th>designation</th>
-            <th>photo</th>
-            <th>note expire days</th>
+            <th>short name</th>
+            <th>picture link</th>
             <th>community parse</th>
             <th>community publish</th>
         </tr>
@@ -24,12 +23,11 @@
         <tbody>
         {% for l in list %}
             <tr>
-                <td>{{ l.name }}</td>
-                <td>{{ l.designation }}</td>
-                <td>{{ 'l.photo' }}</td>
-                <td>{{ l.noteExpireDays }}</td>
-                <td><a href="{{ path('app_view_community_parse_listbycity', {'city_id': l.id}) }}">Parse</a></td>
-                <td><a href="{{ path('app_view_community_publish_listbycity', {'city_id': l.id}) }}">Publish</a></td>
+                <td><a href="{{ path('app_view_city_city_edit', {'city_id': l.id}) }}">{{ l.name }}</a></td>
+                <td>{{ l.shortName }}</td>
+                <td>{{ l.pictureLink }}</td>
+                <td>Parse</td>
+                <td>Publish</td>
             </tr>
         {% endfor %}
         </tbody>

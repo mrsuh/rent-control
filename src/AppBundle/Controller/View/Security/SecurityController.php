@@ -36,7 +36,7 @@ class SecurityController extends Controller
                 $data     = $form->getData();
                 $username = $data['username'];
 
-                $user = $this->get('odm.data.mapper.factory')->init(User::class)->findOne(['username' => $username]);
+                $user = $this->get('dm.default')->init(User::class)->findOne(['username' => $username]);
 
                 if(null === $user) {
                     throw new AuthenticationException('user not found');

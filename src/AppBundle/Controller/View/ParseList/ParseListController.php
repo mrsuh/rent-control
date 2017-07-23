@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Controller\View\City;
+namespace AppBundle\Controller\View\ParseList;
 
-use AppBundle\Document\City\City;
+use AppBundle\Document\ParseList\Record;
 use AppBundle\Exception\AppException;
-use AppBundle\Form\City\CreateForm;
+use AppBundle\Form\ParseList\CreateForm;
 use AppBundle\Session\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,18 +12,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class CityController extends Controller
+class ParseListController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-
+     *
      * @Route("")
      * @Method({"GET"})
      */
     public function listAction()
     {
-        $list = $this->get('model.city')->findAll();
-        return $this->render('AppBundle:City:list.html.twig', ['list' => $list]);
+        $list = $this->get('model.parse_list')->findAll();
+        return $this->render('AppBundle:ParseList:list.html.twig', ['list' => $list]);
     }
 
     /**
@@ -32,18 +32,22 @@ class CityController extends Controller
      */
     public function createAction(Request $request)
     {
-        $form = $this->createForm(CreateForm::class, new City());
+        $cities = [];
+        foreach($this->get('model.city')->findAll() as $city) {
+            $cities[$city->getShortName()] = $city->getShortName();
+        }
 
+        $form = $this->createForm(CreateForm::class, new Record(), ['cities' => $cities]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             try {
 
-                $this->get('model.city')->create($form->getData());
+                $this->get('model.parse_list')->create($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
-                return $this->redirectToRoute('app_view_city_city_list');
+                return $this->redirectToRoute('app_view_parselist_parselist_list');
             } catch (AppException $e) {
                 $this->addFlash(Message::WARNING, $e->getMessage());
             } catch (\Exception $e) {
@@ -53,36 +57,40 @@ class CityController extends Controller
         }
 
         return $this->render(
-            'AppBundle:City:item.html.twig',
+            'AppBundle:ParseList:item.html.twig',
             [
                 'form' => $form->createView()
             ]);
     }
 
     /**
-     * @Route("/{city_id}")
+     * @Route("/{record_id}")
      * @Method({"GET", "POST"})
      */
-    public function editAction($city_id, Request $request)
+    public function editAction($record_id, Request $request)
     {
-        $city = $this->get('model.city')->findOneById($city_id);
+        $record = $this->get('model.parse_list')->findOneById($record_id);
 
-        if(null === $city) {
+        if(null === $record) {
+
             throw new NotFoundHttpException();
         }
 
-        $form = $this->createForm(CreateForm::class, $city);
+        $cities = [];
+        foreach($this->get('model.city')->findAll() as $city) {
+            $cities[$city->getShortName()] = $city->getShortName();
+        }
 
+        $form = $this->createForm(CreateForm::class, $record, ['cities' => $cities]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             try {
-
-                $this->get('model.city')->update($form->getData());
+                $this->get('model.parse_list')->update($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
-                return $this->redirectToRoute('app_view_city_city_list');
+                return $this->redirectToRoute('app_view_parselist_parselist_list');
             } catch (AppException $e) {
                 $this->addFlash(Message::WARNING, $e->getMessage());
             } catch (\Exception $e) {
@@ -92,7 +100,7 @@ class CityController extends Controller
         }
 
         return $this->render(
-            'AppBundle:City:item.html.twig',
+            'AppBundle:ParseList:item.html.twig',
             [
                 'form' => $form->createView()
             ]);

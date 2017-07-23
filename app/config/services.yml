@@ -49,18 +49,8 @@ services:
            - '@security.token_storage'
            - '@session'
 
-    model.blacklist.description:
-       class: AppBundle\Model\BlackList\DescriptionModel
-       arguments:
-           - '@dm.default'
-
-    model.blacklist.person:
-       class: AppBundle\Model\BlackList\PersonModel
-       arguments:
-           - '@dm.default'
-
-    model.blacklist.phone:
-       class: AppBundle\Model\BlackList\PhoneModel
+    model.black_list:
+       class: AppBundle\Model\BlackList\BlackListModel
        arguments:
            - '@dm.default'
 
@@ -69,13 +59,13 @@ services:
        arguments:
            - '@dm.default'
 
-    model.community.parse:
-       class: AppBundle\Model\Community\ParseModel
+    model.parse_list:
+       class: AppBundle\Model\ParseList\ParseListModel
        arguments:
            - '@dm.default'
 
-    model.community.publish:
-       class: AppBundle\Model\Community\PublishModel
+    model.publish_list:
+       class: AppBundle\Model\PublishList\PublishListModel
        arguments:
            - '@dm.default'
 

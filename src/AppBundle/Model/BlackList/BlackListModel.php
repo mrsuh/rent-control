@@ -22,6 +22,22 @@ class BlackListModel
     }
 
     /**
+     * @return null|Record
+     */
+    public function findOneById($id)
+    {
+        return $this->dm_black_list->findOne(['_id' => $id]);
+    }
+
+    /**
+     * @return array|Record[]
+     */
+    public function findAll()
+    {
+        return $this->dm_black_list->find();
+    }
+
+    /**
      * @param Record $obj
      * @return Record
      */

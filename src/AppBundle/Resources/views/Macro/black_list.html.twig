@@ -1,0 +1,13 @@
+{% macro type(type_id) %}
+    {% spaceless %}
+        {% if constant('AppBundle\\Document\\BlackList\\Record::TYPE_DESCRIPTION') == type_id %}
+            description
+        {% elseif constant('AppBundle\\Document\\BlackList\\Record::TYPE_PERSON') == type_id %}
+            person
+        {% elseif constant('AppBundle\\Document\\BlackList\\Record::TYPE_PHONE') == type_id %}
+            phone
+        {% else %}
+           unknown
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}

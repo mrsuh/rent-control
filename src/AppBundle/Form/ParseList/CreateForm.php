@@ -1,13 +1,13 @@
 <?php
 
-namespace AppBundle\Form\BlackList;
+namespace AppBundle\Form\ParseList;
 
-use AppBundle\Document\BlackList\Record;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreateForm extends AbstractType
@@ -16,24 +16,26 @@ class CreateForm extends AbstractType
     {
         $builder
             ->add(
-                'text',
+                'name',
                 TextType::class,
                 [
                     'required'    => true,
                     'constraints' => [new NotBlank()]
                 ]
             )->add(
-                'type',
+                'city',
                 ChoiceType::class,
                 [
                     'required'    => true,
                     'constraints' => [new NotBlank()],
-                    'choices'     => [
-                        'phone'       => Record::TYPE_PHONE,
-                        'person'      => Record::TYPE_PERSON,
-                        'description' => Record::TYPE_DESCRIPTION
-                    ]
-
+                    'choices'     => $options['cities']
+                ]
+            )->add(
+                'link',
+                TextType::class,
+                [
+                    'required'    => true,
+                    'constraints' => [new NotBlank()]
                 ]
             )->add(
                 'submit',
@@ -43,6 +45,11 @@ class CreateForm extends AbstractType
 
     public function getName()
     {
-        return 'city';
+        return 'parse';
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setRequired(['cities']);
     }
 }
