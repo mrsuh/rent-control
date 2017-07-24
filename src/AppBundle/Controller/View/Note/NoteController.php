@@ -11,7 +11,7 @@ class NoteController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/notes")
+     * @Route("")
      * @Method({"GET"})
      */
     public function listAction()

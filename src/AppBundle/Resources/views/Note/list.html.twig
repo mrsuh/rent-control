@@ -1,5 +1,9 @@
 {% extends '@App/Layout/layout.html.twig' %}
 
+{% block breadcrumbs %}
+    <li class="active">Note</li>
+{% endblock %}
+
 {% block content %}
 
     <table class="table table-bordered">
@@ -7,16 +11,14 @@
             <tr>
                 <th>id</th>
                 <th>external id</th>
-                <th>source</th>
                 <th>city</th>
-                <th>community</th>
                 <th>type</th>
                 <th>photos</th>
                 <th>price</th>
                 <th>area</th>
                 <th>contacts</th>
+                <th>timestamp</th>
                 <th>subways</th>
-                <th>description</th>
                 <th>published</th>
                 <th>published timestamp</th>
             </tr>
@@ -26,19 +28,35 @@
             <tr>
                 <td>{{ l.id }}</td>
                 <td>{{ l.externalId }}</td>
-                <td>{{ l.source }}</td>
                 <td>{{ l.city }}</td>
-                <td>{{ 'l.community' }}</td>
                 <td>{{ l.type }}</td>
-                <td>{{ 'l.photos' }}</td>
+                <td>
+                    {% for photo in l.photos %}
+                    <a href="{{ photo.high }}" target="_blank">photo&nbsp;{{ loop.index }}</a><br>
+                    {% endfor %}
+                </td>
                 <td>{{ l.price }}</td>
                 <td>{{ l.area }}</td>
-                <td>{{ 'l.contacts' }}</td>
+                <td>
+                    {{ l.contact.name }}<br>
+                    <a href="{{ l.contact.link }}" target="_blank">{{ l.contact.link }}</a><br>
+                    {% for phone in l.contact.phones %}
+                    {{ phone }}<br>
+                    {% endfor %}
+
+                </td>
                 <td>{{ l.timestamp }}</td>
-                <td>{{ 'l.subways' }}</td>
-                <td>{{ l.description }}</td>
+                <td>
+                    {% for subway in l.subways %}
+                    {{ subway }}<br>
+                    {% endfor %}
+                </td>
                 <td>{{ l.published }}</td>
                 <td>{{ l.publishedTimestamp }}</td>
+
+            </tr>
+            <tr style="border-bottom: 2px solid #3e3f3a;">
+                <td colspan="12">{{ l.description }}</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -11,7 +11,7 @@ class UserController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/users")
+     * @Route("")
      * @Method({"GET"})
      */
     public function listAction()

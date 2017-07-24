@@ -16,17 +16,17 @@ class UserCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $dm_user = $this->getContainer()->get('odm.hot.data.mapper.factory')->init(User::class);
+        $dm_user = $this->getContainer()->get('dm.default')->init(User::class);
 
         $user =
             (new User())
-            ->setUsername('admin')
-            ->setRoles(['ROLE_ADMIN'])
+                ->setUsername('admin')
+                ->setRoles(['ROLE_ADMIN'])
                 ->setSalt('salt');
 
         $encoder = $this->getContainer()->get('security.password_encoder');
 
-       $pass =  $encoder->encodePassword($user, 'password');
+        $pass = $encoder->encodePassword($user, 'password');
 
         $user->setPassword($pass);
         $dm_user->insert($user);

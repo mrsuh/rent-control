@@ -1,6 +1,10 @@
 logout:
     path: /logout
 
+view.security:
+    resource: "@AppBundle/Controller/View/Security/SecurityController.php"
+    type:     annotation
+
 view.black_list:
     resource: "@AppBundle/Controller/View/BlackList/BlackListController.php"
     type:     annotation
@@ -29,12 +33,10 @@ view.publish_list:
 view.note:
     resource: "@AppBundle/Controller/View/Note/NoteController.php"
     type:     annotation
-
-view.security:
-    resource: "@AppBundle/Controller/View/Security/SecurityController.php"
-    type:     annotation
+    prefix: '/notes'
 
 view.user:
     resource: "@AppBundle/Controller/View/User/UserController.php"
     type:     annotation
+    prefix: '/users'
 

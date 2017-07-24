@@ -23,10 +23,32 @@ class Photo
     }
 
     /**
+     * @param $low
+     * @return $this
+     */
+    public function setLow($low)
+    {
+        $this->low = $low;
+
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getHigh()
     {
         return $this->high;
+    }
+
+    /**
+     * @param $high
+     * @return $this
+     */
+    public function setHigh($high)
+    {
+        $this->high = $high;
+
+        return $this;
     }
 }
