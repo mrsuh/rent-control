@@ -4,6 +4,7 @@ namespace AppBundle\Model\Note;
 
 use AppBundle\Document\Note\Note;
 use ODM\DocumentManager\DocumentManagerFactory;
+use ODM\Paginator\Paginator;
 
 class NoteModel
 {
@@ -19,10 +20,39 @@ class NoteModel
     }
 
     /**
+     * @param int $current_page
+     * @return Paginator
+     */
+    public function paginateAll(int $current_page = 1)
+    {
+        $query = $this->dm_note->createQuery();
+        return Paginator::paginate($query, $current_page);
+    }
+
+    /**
      * @return array|Note[]
      */
     public function findAll()
     {
         return $this->dm_note->find();
+    }
+
+    /**
+     * @return null|Note
+     */
+    public function findOneById($id)
+    {
+        return $this->dm_note->findOne(['_id' => $id]);
+    }
+
+    /**
+     * @param Note $note
+     * @return bool
+     */
+    public function delete(Note $note)
+    {
+        $this->dm_note->delete($note);
+
+        return true;
     }
 }

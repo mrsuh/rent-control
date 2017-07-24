@@ -74,6 +74,11 @@ services:
        arguments:
            - '@dm.default'
 
+    model.subway:
+       class: AppBundle\Model\City\SubwayModel
+       arguments:
+           - '@dm.default'
+
     model.user:
        class: AppBundle\Model\User\UserModel
        arguments:

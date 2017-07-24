@@ -7,9 +7,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <title>Control :: socrent</title>
 </head>
 <body>
@@ -17,6 +14,7 @@
 {% if app.user %}
 
     {% include 'AppBundle:Layout:menu.html.twig' %}
+    {% include 'AppBundle:Layout:modal.html.twig' %}
 
 <ul class="breadcrumb">
     {% block breadcrumbs %}{% endblock %}
@@ -42,5 +40,10 @@
 </div>
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{{ asset('js/modal.js') }}"></script>
 {% block js %}{% endblock %}
+
 </html>

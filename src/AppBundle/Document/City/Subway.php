@@ -25,7 +25,7 @@ class Subway extends Document
     private $regexp;
 
     /**
-     * @ODM\Field(name="color", type="string")
+     * @ODM\Field(name="color", type="string[]")
      */
     private $color;
 

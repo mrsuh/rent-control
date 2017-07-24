@@ -1,0 +1,26 @@
+{% set _pages = paginator.pages %}
+{% set _route = app.request.attributes.get('_route') %}
+{% set _route_params = app.request.attributes.get('_route_params')|merge(app.request.query.all) %}
+
+{% if _pages|length > 1 %}
+
+    {% if app.request.query.get('page') is defined and null != app.request.query.get('page') %}
+        {% set current_page = app.request.query.get('page') %}
+    {% else %}
+        {% set current_page = 1 %}
+    {% endif %}
+
+    <ul class="pagination pull-right">
+
+        <li class="{{ 1 == current_page ? 'disabled' : '' }}"><a href="{{ path(_route, _route_params|merge({'page': 1})) }}">&laquo;</a></li>
+
+        {% for page in _pages %}
+            <li class="{{ page == current_page ? 'active' : '' }}">
+                <a href="{{ path(_route, _route_params|merge({'page': page})) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        <li class="{{ paginator.pagesCount == current_page ? 'disabled' : '' }}"><a href="{{ path(_route, _route_params|merge({'page': paginator.pagesCount})) }}">&raquo;</a></li>
+
+    </ul>
+{% endif %}

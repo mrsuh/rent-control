@@ -708,16 +708,16 @@
         },
         {
             "name": "mrsuh/mongo-odm",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mrsuh/mongo-odm.git",
-                "reference": "2ab38fb51449925310560bc120b0d3bf57eb1ad7"
+                "reference": "f7ff45baaefd2a663389573b75479469afab8fba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mrsuh/mongo-odm/zipball/2ab38fb51449925310560bc120b0d3bf57eb1ad7",
-                "reference": "2ab38fb51449925310560bc120b0d3bf57eb1ad7",
+                "url": "https://api.github.com/repos/mrsuh/mongo-odm/zipball/f7ff45baaefd2a663389573b75479469afab8fba",
+                "reference": "f7ff45baaefd2a663389573b75479469afab8fba",
                 "shasum": ""
             },
             "require": {
@@ -741,7 +741,7 @@
                 }
             ],
             "description": "mongo odm",
-            "time": "2017-07-19 20:43:47"
+            "time": "2017-07-24 08:56:10"
         },
         {
             "name": "paragonie/random_compat",

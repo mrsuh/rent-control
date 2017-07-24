@@ -6,25 +6,28 @@
 
 {% block content %}
 
+    {% include 'AppBundle:Layout:pagination.html.twig' %}
+
     <table class="table table-bordered">
         <thead>
-            <tr>
-                <th>id</th>
-                <th>external id</th>
-                <th>city</th>
-                <th>type</th>
-                <th>photos</th>
-                <th>price</th>
-                <th>area</th>
-                <th>contacts</th>
-                <th>timestamp</th>
-                <th>subways</th>
-                <th>published</th>
-                <th>published timestamp</th>
-            </tr>
+        <tr>
+            <th>id</th>
+            <th>external id</th>
+            <th>city</th>
+            <th>type</th>
+            <th>photos</th>
+            <th>price</th>
+            <th>area</th>
+            <th>contacts</th>
+            <th>timestamp</th>
+            <th>subways</th>
+            <th>published</th>
+            <th>published timestamp</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
-        {% for l in list %}
+        {% for l in paginator.items %}
             <tr>
                 <td>{{ l.id }}</td>
                 <td>{{ l.externalId }}</td>
@@ -32,7 +35,7 @@
                 <td>{{ l.type }}</td>
                 <td>
                     {% for photo in l.photos %}
-                    <a href="{{ photo.high }}" target="_blank">photo&nbsp;{{ loop.index }}</a><br>
+                        <a href="{{ photo.high }}" target="_blank">photo&nbsp;{{ loop.index }}</a><br>
                     {% endfor %}
                 </td>
                 <td>{{ l.price }}</td>
@@ -41,25 +44,69 @@
                     {{ l.contact.name }}<br>
                     <a href="{{ l.contact.link }}" target="_blank">{{ l.contact.link }}</a><br>
                     {% for phone in l.contact.phones %}
-                    {{ phone }}<br>
+                        {{ phone }}<br>
                     {% endfor %}
 
                 </td>
                 <td>{{ l.timestamp }}</td>
                 <td>
                     {% for subway in l.subways %}
-                    {{ subway }}<br>
+                        {% if subways[subway] is defined %}
+                            {{ subways[subway].name }}<br>
+                        {% else %}
+                            {{ subway }}<br>
+                        {% endif %}
                     {% endfor %}
                 </td>
                 <td>{{ l.published }}</td>
                 <td>{{ l.publishedTimestamp }}</td>
+                <td>
+                    <span class="js-delete" data-url="{{ path('app_api_note_note_delete', {'note_id': l.id}) }}" data-id="{{ l.id }}">delete</span>
+                </td>
 
             </tr>
             <tr style="border-bottom: 2px solid #3e3f3a;">
-                <td colspan="12">{{ l.description }}</td>
+                <td colspan="13">{{ l.description }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    {% include 'AppBundle:Layout:pagination.html.twig' %}
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+    $('.js-delete').on('click', function(e){
+        var url = $(this).data('url');
+        var id = $(this).data('id');
+
+        modal.confirm({
+            title: 'Delete note ',
+            body: 'Do you want to delete note ' + id + '?'
+        }, function(){
+            deleteNote(url);
+        })
+    });
+
+    var deleteNote = function (url) {
+        $.ajax({
+            method: 'DELETE',
+            url: url,
+            success: function (data) {
+                if (data['status'] !== 'ok') {
+
+                    return false;
+                }
+
+                window.location.href = '{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}';
+            },
+            error: function () {
+            }
+        });
+    };
+
+</script>
 {% endblock %}
