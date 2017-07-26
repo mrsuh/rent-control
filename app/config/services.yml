@@ -14,18 +14,31 @@ services:
 
 # odm start =========================================================
 
-    odm.dbal:
+    dbal.default:
        class: ODM\DBAL
        arguments:
-           - "%database.hot.host%"
-           - "%database.hot.port%"
-           - "%database.hot.name%"
+           - "%database.default.host%"
+           - "%database.default.port%"
+           - "%database.default.name%"
        public: false
 
     dm.default:
        class: ODM\DocumentManager\DocumentManagerFactory
        arguments:
-           - "@odm.dbal"
+           - "@dbal.default"
+
+    dbal.control:
+       class: ODM\DBAL
+       arguments:
+           - "%database.control.host%"
+           - "%database.control.port%"
+           - "%database.control.name%"
+       public: false
+
+    dm.control:
+       class: ODM\DocumentManager\DocumentManagerFactory
+       arguments:
+           - "@dbal.control"
 
 # odm finish ========================================================
 
@@ -35,53 +48,57 @@ services:
     provider.user:
        class: AppBundle\Security\UserProvider
        arguments:
-           - '@dm.default'
+           - '@dm.control'
 
 # user provider finish ==============================================
 
 
-# model start =======================================================
+# model document start =======================================================
 
-    model.security:
-       class: AppBundle\Model\Security\SecurityModel
+    model.document.black_list:
+       class: AppBundle\Model\Document\BlackList\BlackListModel
+       arguments:
+           - '@dm.control'
+
+    model.document.city:
+       class: AppBundle\Model\Document\City\CityModel
+       arguments:
+           - '@dm.default'
+
+    model.document.parse_list:
+       class: AppBundle\Model\Document\ParseList\ParseListModel
+       arguments:
+           - '@dm.default'
+
+    model.document.publish_list:
+       class: AppBundle\Model\Document\PublishList\PublishListModel
+       arguments:
+           - '@dm.default'
+
+    model.document.note:
+       class: AppBundle\Model\Document\Note\NoteModel
+       arguments:
+           - '@dm.default'
+
+    model.document.subway:
+       class: AppBundle\Model\Document\City\SubwayModel
+       arguments:
+           - '@dm.default'
+
+    model.document.user:
+       class: AppBundle\Model\Document\User\UserModel
+       arguments:
+           - '@dm.control'
+
+# model document finish ======================================================
+
+# model logic finish =========================================================
+
+    model.logic.security:
+       class: AppBundle\Model\Logic\Security\SecurityModel
        arguments:
            - '@security.password_encoder'
            - '@security.token_storage'
            - '@session'
 
-    model.black_list:
-       class: AppBundle\Model\BlackList\BlackListModel
-       arguments:
-           - '@dm.default'
-
-    model.city:
-       class: AppBundle\Model\City\CityModel
-       arguments:
-           - '@dm.default'
-
-    model.parse_list:
-       class: AppBundle\Model\ParseList\ParseListModel
-       arguments:
-           - '@dm.default'
-
-    model.publish_list:
-       class: AppBundle\Model\PublishList\PublishListModel
-       arguments:
-           - '@dm.default'
-
-    model.note:
-       class: AppBundle\Model\Note\NoteModel
-       arguments:
-           - '@dm.default'
-
-    model.subway:
-       class: AppBundle\Model\City\SubwayModel
-       arguments:
-           - '@dm.default'
-
-    model.user:
-       class: AppBundle\Model\User\UserModel
-       arguments:
-           - '@dm.default'
-
-# model finish ======================================================
+# model logic finish =========================================================

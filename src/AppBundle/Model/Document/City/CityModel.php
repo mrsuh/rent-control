@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Model\City;
+namespace AppBundle\Model\Document\City;
 
-use AppBundle\Document\City\City;
+use Schema\City\City;
 use ODM\DocumentManager\DocumentManagerFactory;
 
 class CityModel

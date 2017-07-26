@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function listAction()
     {
-        $list = $this->get('model.user')->findAll();
+        $list = $this->get('model.document.user')->findAll();
         return $this->render('AppBundle:User:list.html.twig', ['list' => $list]);
     }
 }

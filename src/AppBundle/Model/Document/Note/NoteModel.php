@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Model\Note;
+namespace AppBundle\Model\Document\Note;
 
-use AppBundle\Document\Note\Note;
+use Schema\Note\Note;
 use ODM\DocumentManager\DocumentManagerFactory;
 use ODM\Paginator\Paginator;
 

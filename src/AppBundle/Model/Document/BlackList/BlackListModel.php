@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Model\BlackList;
+namespace AppBundle\Model\Document\BlackList;
 
-use AppBundle\Document\BlackList\Record;
 use ODM\DocumentManager\DocumentManagerFactory;
+use Schema\BlackList\Record;
 
 class BlackListModel
 {

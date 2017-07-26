@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller\View\Security;
 
-use AppBundle\Document\User\User;
 use AppBundle\Form\Security\LoginForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,15 +35,15 @@ class SecurityController extends Controller
                 $data     = $form->getData();
                 $username = $data['username'];
 
-                $user = $this->get('dm.default')->init(User::class)->findOne(['username' => $username]);
+                $user = $this->get('model.document.user')->findOneByUsername($username);
 
                 if(null === $user) {
                     throw new AuthenticationException('user not found');
                 }
 
-                $this->get('model.security')->authenticate($user, $data['password']);
+                $this->get('model.logic.security')->authenticate($user, $data['password']);
 
-                $this->get('model.security')->createToken($user);
+                $this->get('model.logic.security')->createToken($user);
 
                 return $this->redirectToRoute('app_view_city_city_list');
 

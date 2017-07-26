@@ -2,22 +2,17 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host: 127.0.0.1
-    database_port: ~
-    database_name: symfony
-    database_user: root
-    database_password: ~
+    database.default.host: 127.0.0.1
+    database.default.port: 27017
+    database.default.name: rent-collector
+    database.default.user: root
+    database.default.password: null
 
-    database.hot.host: 127.0.0.1
-    database.hot.port: 27017
-    database.hot.name: rent-collector
-    database.hot.user: root
-    database.hot.password: null
-    database.cold.host: 127.0.0.1
-    database.cold.port: 27017
-    database.cold.name: rent-collector-cold
-    database.cold.user: root
-    database.cold.password: null
+    database.control.host: 127.0.0.1
+    database.control.port: 27017
+    database.control.name: rent-control
+    database.control.user: root
+    database.control.password: null
 
     # You should uncomment this if you want to use pdo_sqlite
     #database_path: '%kernel.project_dir%/var/data/data.sqlite'

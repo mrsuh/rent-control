@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\View\PublishList;
 
-use AppBundle\Document\PublishList\Record;
+use Schema\PublishList\Record;
 use AppBundle\Exception\AppException;
 use AppBundle\Form\PublishList\CreateForm;
 use AppBundle\Session\Message;
@@ -22,7 +22,7 @@ class PublishListController extends Controller
      */
     public function listAction()
     {
-        $list = $this->get('model.publish_list')->findAll();
+        $list = $this->get('model.document.publish_list')->findAll();
         return $this->render('AppBundle:PublishList:list.html.twig', ['list' => $list]);
     }
 
@@ -33,7 +33,7 @@ class PublishListController extends Controller
     public function createAction(Request $request)
     {
         $cities = [];
-        foreach($this->get('model.city')->findAll() as $city) {
+        foreach($this->get('model.document.city')->findAll() as $city) {
             $cities[$city->getShortName()] = $city->getShortName();
         }
 
@@ -42,7 +42,7 @@ class PublishListController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->get('model.publish_list')->create($form->getData());
+                $this->get('model.document.publish_list')->create($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
@@ -68,7 +68,7 @@ class PublishListController extends Controller
      */
     public function editAction($record_id, Request $request)
     {
-        $record = $this->get('model.publish_list')->findOneById($record_id);
+        $record = $this->get('model.document.publish_list')->findOneById($record_id);
 
         if(null === $record) {
 
@@ -76,7 +76,7 @@ class PublishListController extends Controller
         }
 
         $cities = [];
-        foreach($this->get('model.city')->findAll() as $city) {
+        foreach($this->get('model.document.city')->findAll() as $city) {
             $cities[$city->getShortName()] = $city->getShortName();
         }
 
@@ -85,7 +85,7 @@ class PublishListController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->get('model.publish_list')->update($form->getData());
+                $this->get('model.document.publish_list')->update($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 

@@ -16,7 +16,7 @@ class UserCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $dm_user = $this->getContainer()->get('dm.default')->init(User::class);
+        $dm_user = $this->getContainer()->get('dm.control')->init(User::class);
 
         $user =
             (new User())

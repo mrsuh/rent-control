@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Model\ParseList;
+namespace AppBundle\Model\Document\ParseList;
 
-use AppBundle\Document\ParseList\Record;
+use Schema\ParseList\Record;
 use ODM\DocumentManager\DocumentManagerFactory;
 
 class ParseListModel
@@ -55,5 +55,21 @@ class ParseListModel
         $this->dm_parse->update($obj);
 
         return $obj;
+    }
+
+    /**
+     * @param Record $record
+     * @param        $source_id
+     * @return null|\Schema\ParseList\Source
+     */
+    public function findSourceById(Record $record, $source_id)
+    {
+        foreach($record->getSources() as $source) {
+            if($source->getId() === $source_id) {
+                return $source;
+            }
+        }
+
+        return null;
     }
 }

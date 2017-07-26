@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Model\ParseList;
+namespace AppBundle\Model\Document\ParseList;
 
-use AppBundle\Document\ParseList\Record;
+use Schema\ParseList\Record;
 use ODM\DocumentManager\DocumentManagerFactory;
 
 class SourceModel

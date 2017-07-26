@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Model\Security;
+namespace AppBundle\Model\Logic\Security;
 
 use AppBundle\Document\User\User;
 use Symfony\Component\HttpFoundation\Session\Session;

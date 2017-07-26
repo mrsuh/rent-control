@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Model\User;
+namespace AppBundle\Model\Document\User;
 
 use AppBundle\Document\User\User;
 use ODM\DocumentManager\DocumentManagerFactory;
@@ -19,11 +19,19 @@ class UserModel
     }
 
     /**
-     * @return array|\ODM\Document\Document[]
+     * @return array|User[]
      */
     public function findAll()
     {
         return $this->dm_user->find();
+    }
+
+    /**
+     * @return User|null
+     */
+    public function findOneByUsername(string $username)
+    {
+        return $this->dm_user->findOne(['username' => $username]);
     }
 
     /**

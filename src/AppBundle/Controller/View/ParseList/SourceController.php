@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\View\ParseList;
 
-use AppBundle\Document\ParseList\Source;
+use Schema\ParseList\Source;
 use AppBundle\Exception\AppException;
 use AppBundle\Form\ParseList\SourceForm;
 use AppBundle\Session\Message;
@@ -22,7 +22,7 @@ class SourceController extends Controller
      */
     public function listAction($record_id)
     {
-        $record = $this->get('model.parse_list')->findOneById($record_id);
+        $record = $this->get('model.document.parse_list')->findOneById($record_id);
 
         if(null === $record) {
 
@@ -41,7 +41,7 @@ class SourceController extends Controller
      */
     public function createAction($record_id, Request $request)
     {
-        $record = $this->get('model.parse_list')->findOneById($record_id);
+        $record = $this->get('model.document.parse_list')->findOneById($record_id);
 
         if(null === $record) {
 
@@ -56,7 +56,7 @@ class SourceController extends Controller
 
                 $record->addSource($form->getData());
 
-                $this->get('model.parse_list')->update($record);
+                $this->get('model.document.parse_list')->update($record);
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
@@ -83,14 +83,14 @@ class SourceController extends Controller
      */
     public function editAction($record_id, $source_id, Request $request)
     {
-        $record = $this->get('model.parse_list')->findOneById($record_id);
+        $record = $this->get('model.document.parse_list')->findOneById($record_id);
 
         if(null === $record) {
 
             throw new NotFoundHttpException();
         }
 
-        $source = $record->findSourceById($source_id);
+        $source = $this->get('model.document.parse_list')->findSourceById($record, $source_id);
 
         if(null === $source) {
 
@@ -102,7 +102,7 @@ class SourceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->get('model.parse_list')->update($record);
+                $this->get('model.document.parse_list')->update($record);
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 

@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\View\BlackList;
 
-use AppBundle\Document\BlackList\Record;
+use Schema\BlackList\Record;
 use AppBundle\Exception\AppException;
 use AppBundle\Form\BlackList\CreateForm;
 use AppBundle\Session\Message;
@@ -22,7 +22,7 @@ class BlackListController extends Controller
      */
     public function listAction()
     {
-        $list = $this->get('model.black_list')->findAll();
+        $list = $this->get('model.document.black_list')->findAll();
         return $this->render('AppBundle:BlackList:list.html.twig', ['list' => $list]);
     }
 
@@ -37,7 +37,7 @@ class BlackListController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->get('model.black_list')->create($form->getData());
+                $this->get('model.document.black_list')->create($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
@@ -63,7 +63,7 @@ class BlackListController extends Controller
      */
     public function editAction($record_id, Request $request)
     {
-        $record = $this->get('model.black_list')->findOneById($record_id);
+        $record = $this->get('model.document.black_list')->findOneById($record_id);
 
         if(null === $record) {
 
@@ -75,7 +75,7 @@ class BlackListController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->get('model.black_list')->update($form->getData());
+                $this->get('model.document.black_list')->update($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 

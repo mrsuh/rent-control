@@ -17,9 +17,9 @@ class NoteController extends Controller
      * @Route("{note_id}")
      * @Method({"DELETE"})
      */
-    public function deleteAction($note_id, Request $request)
+    public function deleteAction($note_id)
     {
-        $note = $this->get('model.note')->findOneById($note_id);
+        $note = $this->get('model.document.note')->findOneById($note_id);
 
         if(null === $note) {
 
@@ -28,7 +28,7 @@ class NoteController extends Controller
 
         try {
 
-            $this->get('model.note')->delete($note);
+            $this->get('model.document.note')->delete($note);
 
         } catch(\Exception $e) {
             $this->get('logger')->error($e->getMessage());

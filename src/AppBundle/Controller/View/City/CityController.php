@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\View\City;
 
-use AppBundle\Document\City\City;
+use Schema\City\City;
 use AppBundle\Exception\AppException;
 use AppBundle\Form\City\CreateForm;
 use AppBundle\Session\Message;
@@ -22,7 +22,7 @@ class CityController extends Controller
      */
     public function listAction()
     {
-        $list = $this->get('model.city')->findAll();
+        $list = $this->get('model.document.city')->findAll();
         return $this->render('AppBundle:City:list.html.twig', ['list' => $list]);
     }
 
@@ -39,7 +39,7 @@ class CityController extends Controller
         if ($form->isSubmitted()) {
             try {
 
-                $this->get('model.city')->create($form->getData());
+                $this->get('model.document.city')->create($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
@@ -65,7 +65,7 @@ class CityController extends Controller
      */
     public function editAction($city_id, Request $request)
     {
-        $city = $this->get('model.city')->findOneById($city_id);
+        $city = $this->get('model.document.city')->findOneById($city_id);
 
         if(null === $city) {
             throw new NotFoundHttpException();
@@ -78,7 +78,7 @@ class CityController extends Controller
         if ($form->isSubmitted()) {
             try {
 
-                $this->get('model.city')->update($form->getData());
+                $this->get('model.document.city')->update($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 

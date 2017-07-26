@@ -18,10 +18,10 @@ class NoteController extends Controller
     public function listAction(Request $request)
     {
         $page = $request->query->get('page');
-        $paginator = $this->get('model.note')->paginateAll($page ? $page : 1);
+        $paginator = $this->get('model.document.note')->paginateAll($page ? $page : 1);
 
         $subways = [];
-        foreach($this->get('model.subway')->findAll() as $subway) {
+        foreach($this->get('model.document.subway')->findAll() as $subway) {
             $subways[$subway->getId()] = $subway;
         }
 

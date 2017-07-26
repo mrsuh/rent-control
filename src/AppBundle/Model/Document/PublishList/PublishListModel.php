@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Model\PublishList;
+namespace AppBundle\Model\Document\PublishList;
 
-use AppBundle\Document\PublishList\Record;
+use Schema\PublishList\Record;
 use ODM\DocumentManager\DocumentManagerFactory;
 
 class PublishListModel
