@@ -15,20 +15,30 @@ view.city:
     type:     annotation
     prefix: '/cities'
 
-view.parse_list:
-    resource: "@AppBundle/Controller/View/ParseList/ParseListController.php"
+view.parse.record:
+    resource: "@AppBundle/Controller/View/Parse/Record/RecordController.php"
     type:     annotation
-    prefix: '/parse-list/records'
+    prefix: '/parse/records'
 
-view.parse_list.source:
-    resource: "@AppBundle/Controller/View/ParseList/SourceController.php"
+view.parse.source:
+    resource: "@AppBundle/Controller/View/Parse/Record/SourceController.php"
     type:     annotation
-    prefix: '/parse-list/records/{record_id}/sources'
+    prefix: '/parse/records/{record_id}/sources'
 
-view.publish_list:
-    resource: "@AppBundle/Controller/View/PublishList/PublishListController.php"
+view.parse.app:
+    resource: "@AppBundle/Controller/View/Parse/App/AppController.php"
     type:     annotation
-    prefix: '/publish-list/records'
+    prefix: '/parse/apps'
+
+view.publish.record:
+    resource: "@AppBundle/Controller/View/Publish/Record/RecordController.php"
+    type:     annotation
+    prefix: '/publish/records'
+
+view.publish.user:
+    resource: "@AppBundle/Controller/View/Publish/User/UserController.php"
+    type:     annotation
+    prefix: '/publish/users'
 
 view.note:
     resource: "@AppBundle/Controller/View/Note/NoteController.php"

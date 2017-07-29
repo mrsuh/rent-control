@@ -1,0 +1,36 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li>Parse</li>
+    <li>{{ record.name }}</li>
+    <li class="active">Source</li>
+{% endblock %}
+
+{% block content %}
+
+    <a href="{{ path('app_view_parselist_source_create', {'record_id': app.request.get('record_id')}) }}" class="btn btn-primary">New</a>
+    <br>
+    <br>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>type</th>
+            <th>link</th>
+            <th>parameters</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td><a href="{{ path('app_view_parselist_source_edit', {'record_id': app.request.get('record_id'), 'source_id': l.id}) }}">{{ l.id }}</a></td>
+                <td>{{ l.type }}</td>
+                <td>{{ l.link }}</td>
+                <td>{{ l.parameters }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

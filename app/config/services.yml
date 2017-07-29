@@ -65,13 +65,26 @@ services:
        arguments:
            - '@dm.default'
 
-    model.document.parse_list:
-       class: AppBundle\Model\Document\ParseList\ParseListModel
+    model.document.parse.record:
+       class: AppBundle\Model\Document\Parse\Record\RecordModel
        arguments:
            - '@dm.default'
 
-    model.document.publish_list:
-       class: AppBundle\Model\Document\PublishList\PublishListModel
+    model.document.parse.source:
+       class: AppBundle\Model\Document\Parse\Record\SourceModel
+
+    model.document.parse.app:
+        class: AppBundle\Model\Document\Parse\App\AppModel
+        arguments:
+            - '@dm.default'
+
+    model.document.publish.record:
+       class: AppBundle\Model\Document\Publish\Record\RecordModel
+       arguments:
+           - '@dm.default'
+
+    model.document.publish.user:
+       class: AppBundle\Model\Document\Publish\User\UserModel
        arguments:
            - '@dm.default'
 

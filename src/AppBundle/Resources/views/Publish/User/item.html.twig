@@ -1,0 +1,42 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li>Publish</li>
+    <li>User</li>
+    <li class="active">{{ form.vars.value.id ? 'Edit' : 'New' }}</li>
+{% endblock %}
+
+{% block form %}
+
+    <div class="form-group {{ (form.external_id.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.external_id, 'External id', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.external_id, {'attr': {'class': 'form-control', 'placeholder': 'n19281b7298' }}) }}
+            {{ form_errors(form.external_id) }}
+        </div>
+    </div>
+
+    <div class="form-group {{ (form.username.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.username, 'Username', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'username' }}) }}
+            {{ form_errors(form.username) }}
+        </div>
+    </div>
+
+    <div class="form-group {{ (form.password.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.password, 'Password', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': '********' }}) }}
+            {{ form_errors(form.password) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button type="reset" class="btn btn-default">Cancel</button>
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary' }, 'label': 'Submit'}) }}
+        </div>
+    </div>
+
+{% endblock %}
