@@ -3,7 +3,7 @@
 {% block breadcrumbs %}
     <li>Parse</li>
     <li>{{ record.name }}</li>
-    <li><a href="{{ path('app_view_parselist_source_list', {'record_id': app.request.get('record_id')}) }}">Source</a></li>
+    <li><a href="{{ path('app_view_parse_record_source_list', {'record_id': app.request.get('record_id')}) }}">Source</a></li>
     <li class="active">{{ form.vars.value.city ? 'Edit' : 'New' }}</li>
 {% endblock %}
 

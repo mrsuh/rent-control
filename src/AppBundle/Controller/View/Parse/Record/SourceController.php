@@ -62,7 +62,7 @@ class SourceController extends Controller
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
-                return $this->redirectToRoute('app_view_parselist_source_list', ['record_id' => $record_id]);
+                return $this->redirectToRoute('app_view_parse_record_source_list', ['record_id' => $record_id]);
             } catch (AppException $e) {
                 $this->addFlash(Message::WARNING, $e->getMessage());
             } catch (\Exception $e) {
@@ -110,7 +110,7 @@ class SourceController extends Controller
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
-                return $this->redirectToRoute('app_view_parselist_source_list', ['record_id' => $record_id]);
+                return $this->redirectToRoute('app_view_parse_record_source_list', ['record_id' => $record_id]);
             } catch (AppException $e) {
                 $this->addFlash(Message::WARNING, $e->getMessage());
             } catch (\Exception $e) {
