@@ -2,7 +2,7 @@
 
 {% block breadcrumbs %}
     <li>Parse</li>
-    <li>{{ record.name }}</li>
+    <li><a href="{{ path('app_view_parse_record_record_list') }}">{{ record.name }}</a></li>
     <li class="active">Source</li>
 {% endblock %}
 
