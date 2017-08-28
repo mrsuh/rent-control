@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Control</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Parse<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('app_view_parse_record_record_list') }}">Record</a></li>
+                        <li><a href="{{ path('app_view_parse_app_app_list') }}">App</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Publish<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('app_view_publish_record_record_list') }}">Record</a></li>
+                        <li><a href="{{ path('app_view_publish_user_user_list') }}">User</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ path('app_view_blacklist_blacklist_list') }}">Black list</a></li>
+                <li><a href="{{ path('app_view_note_note_list') }}">Note</a></li>
+                <li><a href="{{ path('app_view_city_city_list') }}">City</a></li>
+                <li><a href="{{ path('app_view_user_user_list') }}">User</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,31 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li>Parse</li>
+    <li class="active">App</li>
+{% endblock %}
+
+{% block content %}
+
+    <a href="{{ path('app_view_parse_app_app_create') }}" class="btn btn-primary">New</a>
+    <br>
+    <br>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>token</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td><a href="{{ path('app_view_parse_app_app_edit', {'app_id': l.id }) }}">{{ l.name }}</a></td>
+                <td>{{ l.token }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

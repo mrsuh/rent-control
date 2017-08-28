@@ -1,0 +1,52 @@
+logout:
+    path: /logout
+
+view.security:
+    resource: "@AppBundle/Controller/View/Security/SecurityController.php"
+    type:     annotation
+
+view.black_list:
+    resource: "@AppBundle/Controller/View/BlackList/BlackListController.php"
+    type:     annotation
+    prefix: '/black-list/records'
+
+view.city:
+    resource: "@AppBundle/Controller/View/City/CityController.php"
+    type:     annotation
+    prefix: '/cities'
+
+view.parse.record:
+    resource: "@AppBundle/Controller/View/Parse/Record/RecordController.php"
+    type:     annotation
+    prefix: '/parse/records'
+
+view.parse.source:
+    resource: "@AppBundle/Controller/View/Parse/Record/SourceController.php"
+    type:     annotation
+    prefix: '/parse/records/{record_id}/sources'
+
+view.parse.app:
+    resource: "@AppBundle/Controller/View/Parse/App/AppController.php"
+    type:     annotation
+    prefix: '/parse/apps'
+
+view.publish.record:
+    resource: "@AppBundle/Controller/View/Publish/Record/RecordController.php"
+    type:     annotation
+    prefix: '/publish/records'
+
+view.publish.user:
+    resource: "@AppBundle/Controller/View/Publish/User/UserController.php"
+    type:     annotation
+    prefix: '/publish/users'
+
+view.note:
+    resource: "@AppBundle/Controller/View/Note/NoteController.php"
+    type:     annotation
+    prefix: '/notes'
+
+view.user:
+    resource: "@AppBundle/Controller/View/User/UserController.php"
+    type:     annotation
+    prefix: '/users'
+

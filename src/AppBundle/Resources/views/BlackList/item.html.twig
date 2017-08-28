@@ -1,0 +1,33 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li>Black list</li>
+    <li class="active">{{ form.vars.value.id ? 'Edit' : 'New' }}</li>
+{% endblock %}
+
+{% block form %}
+
+    <div class="form-group {{ (form.text.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.text, 'Text', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'text' }}) }}
+            {{ form_errors(form.text) }}
+        </div>
+    </div>
+
+    <div class="form-group {{ (form.type.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.type, 'Type', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.type, {'attr': {'class': 'form-control' }}) }}
+            {{ form_errors(form.type) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button type="reset" class="btn btn-default">Cancel</button>
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary' }, 'label': 'Submit'}) }}
+        </div>
+    </div>
+
+{% endblock %}

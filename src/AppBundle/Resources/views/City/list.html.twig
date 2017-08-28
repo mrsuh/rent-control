@@ -1,0 +1,36 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li class="active">City</li>
+{% endblock %}
+
+{% block content %}
+
+    <a href="{{ path('app_view_city_city_create') }}" class="btn btn-primary">New</a>
+    <br>
+    <br>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>short name</th>
+            <th>picture link</th>
+            <th>community parse</th>
+            <th>community publish</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td><a href="{{ path('app_view_city_city_edit', {'city_id': l.id}) }}">{{ l.name }}</a></td>
+                <td>{{ l.shortName }}</td>
+                <td>{{ l.pictureLink }}</td>
+                <td>Parse</td>
+                <td>Publish</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

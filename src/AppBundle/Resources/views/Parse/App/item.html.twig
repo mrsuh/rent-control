@@ -1,0 +1,34 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li>Parse</li>
+    <li>App</li>
+    <li class="active">{{ form.vars.value.id ? 'Edit' : 'New' }}</li>
+{% endblock %}
+
+{% block form %}
+
+    <div class="form-group {{ (form.name.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.name, 'Name', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'app' }}) }}
+            {{ form_errors(form.name) }}
+        </div>
+    </div>
+
+    <div class="form-group {{ (form.token.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.token, 'Token', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.token, {'attr': {'class': 'form-control' }}) }}
+            {{ form_errors(form.token) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button type="reset" class="btn btn-default">Cancel</button>
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary' }, 'label': 'Submit'}) }}
+        </div>
+    </div>
+
+{% endblock %}

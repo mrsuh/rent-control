@@ -1,0 +1,34 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li class="active">Black list</li>
+{% endblock %}
+
+{% block content %}
+
+    {% import 'AppBundle:Macro:black_list.html.twig' as black_list %}
+
+    <a href="{{ path('app_view_blacklist_blacklist_create') }}" class="btn btn-primary">New</a>
+    <br>
+    <br>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>text</th>
+            <th>type</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td><a href="{{ path('app_view_blacklist_blacklist_edit', {'record_id': l.id}) }}">{{ l.id }}</a></td>
+                <td>{{ l.text }}</td>
+                <td>{{ black_list.type(l.type) }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

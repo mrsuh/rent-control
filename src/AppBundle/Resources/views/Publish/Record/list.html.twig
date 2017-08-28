@@ -1,0 +1,37 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li>Publish</li>
+    <li class="active">Record</li>
+{% endblock %}
+
+{% block content %}
+
+    <a href="{{ path('app_view_publish_record_record_create') }}" class="btn btn-primary">New</a>
+    <br>
+    <br>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>city</th>
+            <th>user</th>
+            <th>group id</th>
+            <th>link</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for l in list %}
+            <tr>
+                <td><a href="{{ path('app_view_publish_record_record_edit', {'record_id': l.id }) }}">{{ l.name }}</a></td>
+                <td>{{ l.city }}</td>
+                <td>{{ l.link }}</td>
+                <td>{{ l.groupId }}</td>
+                <td>{{ l.user }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

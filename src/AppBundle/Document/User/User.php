@@ -3,25 +3,39 @@
 namespace AppBundle\Document\User;
 
 use ODM\Document\Document;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class User extends Document
+/**
+ * @ODM\Collection(name="user")
+ */
+class User extends Document implements UserInterface
 {
-    private $id;
-
+    /**
+     * @ODM\Field(name="username", type="string")
+     */
     private $username;
 
+    /**
+     * @ODM\Field(name="password", type="string")
+     */
     private $password;
 
+    /**
+     * @ODM\Field(name="salt", type="string")
+     */
     private $salt;
 
-    private $role;
+    /**
+     * @ODM\Field(name="roles", type="string[]")
+     */
+    private $roles;
 
     /**
-     * @return mixed
+     * User constructor.
      */
-    public function getId()
+    public function __construct()
     {
-        return $this->id;
+        $this->roles = [];
     }
 
     /**
@@ -84,19 +98,27 @@ class User extends Document
     /**
      * @return mixed
      */
-    public function getRole()
+    public function getRoles()
     {
-        return $this->role;
+        return (array)$this->roles;
     }
 
     /**
-     * @param $role
+     * @param $roles
      * @return $this
      */
-    public function setRole($role)
+    public function setRoles($roles)
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function eraseCredentials()
+    {
+        return false;
     }
 }

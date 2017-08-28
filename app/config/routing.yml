@@ -1,5 +1,8 @@
-app:
-    resource: "@AppBundle/Resources/config/routing.yml"
+view:
+    resource: "@AppBundle/Resources/config/routing_view.yml"
     prefix:   /
 
+api:
+    resource: "@AppBundle/Resources/config/routing_api.yml"
+    prefix:   /api/v1/
 

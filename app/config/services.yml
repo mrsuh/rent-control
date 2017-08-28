@@ -1,5 +1,3 @@
-# Learn more about services, parameters and containers at
-# https://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
 
@@ -12,30 +10,108 @@ services:
         autoconfigure: true
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
-        public: false
+        public: true
 
+# odm start =========================================================
 
-    odm.hot.dbal:
+    dbal.default:
        class: ODM\DBAL
        arguments:
-           - "%database.hot.host%"
-           - "%database.hot.port%"
-           - "%database.hot.name%"
+           - "%database.default.host%"
+           - "%database.default.port%"
+           - "%database.default.name%"
+       public: false
 
-    odm.cold.dbal:
+    dm.default:
+       class: ODM\DocumentManager\DocumentManagerFactory
+       arguments:
+           - "@dbal.default"
+
+    dbal.control:
        class: ODM\DBAL
        arguments:
-           - "%database.cold.host%"
-           - "%database.cold.port%"
-           - "%database.cold.name%"
+           - "%database.control.host%"
+           - "%database.control.port%"
+           - "%database.control.name%"
+       public: false
 
-    odm.hot.data.mapper.factory:
-       class: ODM\DocumentMapper\DataMapperFactory
+    dm.control:
+       class: ODM\DocumentManager\DocumentManagerFactory
        arguments:
-           - "@odm.hot.dbal"
-       public: true
+           - "@dbal.control"
 
-    odm.cold.data.mapper.factory:
-       class: ODM\DocumentMapper\DataMapperFactory
+# odm finish ========================================================
+
+
+# user provider start ===============================================
+
+    provider.user:
+       class: AppBundle\Security\UserProvider
        arguments:
-           - "@odm.cold.dbal"
+           - '@dm.control'
+
+# user provider finish ==============================================
+
+
+# model document start =======================================================
+
+    model.document.black_list:
+       class: AppBundle\Model\Document\BlackList\BlackListModel
+       arguments:
+           - '@dm.control'
+
+    model.document.city:
+       class: AppBundle\Model\Document\City\CityModel
+       arguments:
+           - '@dm.default'
+
+    model.document.parse.record:
+       class: AppBundle\Model\Document\Parse\Record\RecordModel
+       arguments:
+           - '@dm.default'
+
+    model.document.parse.source:
+       class: AppBundle\Model\Document\Parse\Record\SourceModel
+
+    model.document.parse.app:
+        class: AppBundle\Model\Document\Parse\App\AppModel
+        arguments:
+            - '@dm.default'
+
+    model.document.publish.record:
+       class: AppBundle\Model\Document\Publish\Record\RecordModel
+       arguments:
+           - '@dm.default'
+
+    model.document.publish.user:
+       class: AppBundle\Model\Document\Publish\User\UserModel
+       arguments:
+           - '@dm.default'
+
+    model.document.note:
+       class: AppBundle\Model\Document\Note\NoteModel
+       arguments:
+           - '@dm.default'
+
+    model.document.subway:
+       class: AppBundle\Model\Document\City\SubwayModel
+       arguments:
+           - '@dm.default'
+
+    model.document.user:
+       class: AppBundle\Model\Document\User\UserModel
+       arguments:
+           - '@dm.control'
+
+# model document finish ======================================================
+
+# model logic finish =========================================================
+
+    model.logic.security:
+       class: AppBundle\Model\Logic\Security\SecurityModel
+       arguments:
+           - '@security.password_encoder'
+           - '@security.token_storage'
+           - '@session'
+
+# model logic finish =========================================================
