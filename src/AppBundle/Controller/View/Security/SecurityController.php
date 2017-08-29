@@ -15,7 +15,7 @@ class SecurityController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/")
+     * @Route("")
      * @Method({"GET"})
      */
     public function indexAction(Request $request)
