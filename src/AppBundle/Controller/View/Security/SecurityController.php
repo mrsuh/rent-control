@@ -15,6 +15,18 @@ class SecurityController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
+     * @Route("")
+     * @Method({"GET"})
+     */
+    public function indexAction(Request $request)
+    {
+        return $this->redirectToRoute('app_view_security_security_login');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/login")
      * @Method({"GET", "POST"})
      */
