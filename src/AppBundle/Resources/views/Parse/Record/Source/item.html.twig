@@ -3,7 +3,9 @@
 {% block breadcrumbs %}
     <li>Parse</li>
     <li><a href="{{ path('app_view_parse_record_record_list') }}">{{ record.name }}</a></li>
-    <li><a href="{{ path('app_view_parse_record_source_list', {'record_id': app.request.get('record_id')}) }}">Source</a></li>
+    <li>
+        <a href="{{ path('app_view_parse_record_source_list', {'record_id': app.request.get('record_id')}) }}">Source</a>
+    </li>
     <li class="active">{{ form.vars.value.city ? 'Edit' : 'New' }}</li>
 {% endblock %}
 
@@ -40,4 +42,29 @@
         </div>
     </div>
 
+    <div class="form-group">
+
+        <div class="col-lg-10 col-lg-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">vk.com:comment</h4>
+                </div>
+                <div class="panel-body">
+                    {"group_id": "40633321", "topic_id": "31885617", "count": "100"}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-10 col-lg-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">vk.com:wall</h4>
+                </div>
+                <div class="panel-body">
+                    {"owner_id": "-57466174", "count": 50}
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
