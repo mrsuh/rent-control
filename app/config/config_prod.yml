@@ -10,13 +10,14 @@ imports:
 monolog:
     handlers:
         main:
-            type: fingers_crossed
+            type:         fingers_crossed
             action_level: error
-            handler: nested
+            handler:      nested
         nested:
-            type: stream
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
-            level: debug
+            type:  rotating_file
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: error
+            max_files: 30
         console:
-            type: console
+            type:  console
             process_psr_3_messages: false
