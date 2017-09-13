@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-group {{ (form.app_id.vars.errors|length ? 'has-error' : '') }}">
-        {{ form_label(form.app_id, 'Password', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        {{ form_label(form.app_id, 'App id', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
         <div class="col-lg-10">
             {{ form_widget(form.app_id, {'attr': {'class': 'form-control', 'placeholder': '2734682722' }}) }}
             {{ form_errors(form.app_id) }}
