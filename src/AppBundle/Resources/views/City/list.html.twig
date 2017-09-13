@@ -18,6 +18,7 @@
             <th>picture link</th>
             <th>community parse</th>
             <th>community publish</th>
+            <th>subway</th>
         </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
                 <td>{{ l.pictureLink }}</td>
                 <td>Parse</td>
                 <td>Publish</td>
+                <td>{{ l.hasSubway ? '+' : '' }}</td>
             </tr>
         {% endfor %}
         </tbody>

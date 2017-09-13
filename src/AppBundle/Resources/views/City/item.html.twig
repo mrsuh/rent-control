@@ -31,6 +31,14 @@
         </div>
     </div>
 
+    <div class="form-group {{ (form.has_subway.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.has_subway, 'Subway', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.has_subway, {'attr': {'class': 'form-control', 'placeholder': 'http://link.png' }}) }}
+            {{ form_errors(form.has_subway) }}
+        </div>
+    </div>
+
     <div class="form-group">
         <div class="col-lg-10 col-lg-offset-2">
             <button type="reset" class="btn btn-default">Cancel</button>
