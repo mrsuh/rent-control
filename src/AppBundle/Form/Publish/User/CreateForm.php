@@ -35,6 +35,13 @@ class CreateForm extends AbstractType
                     'constraints' => [new NotBlank()]
                 ]
             )->add(
+                'app_id',
+                TextType::class,
+                [
+                    'required'    => true,
+                    'constraints' => [new NotBlank()]
+                ]
+            )->add(
                 'submit',
                 SubmitType::class
             );
