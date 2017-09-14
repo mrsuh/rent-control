@@ -57,8 +57,7 @@ class CreateForm extends AbstractType
                 'active',
                 CheckboxType::class,
                 [
-                    'required'    => false,
-                    'constraints' => [new NotBlank()]
+                    'required'    => false
                 ]
             )->add(
                 'submit',
