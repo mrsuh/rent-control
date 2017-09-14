@@ -16,7 +16,7 @@ class CreateForm extends AbstractType
     {
         $builder
             ->add(
-                'text',
+                'regexp',
                 TextType::class,
                 [
                     'required'    => true,

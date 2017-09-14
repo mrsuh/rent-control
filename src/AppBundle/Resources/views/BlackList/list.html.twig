@@ -16,7 +16,7 @@
         <thead>
         <tr>
             <th>id</th>
-            <th>text</th>
+            <th>regexp</th>
             <th>type</th>
         </tr>
         </thead>
@@ -24,7 +24,7 @@
         {% for l in list %}
             <tr>
                 <td><a href="{{ path('app_view_blacklist_blacklist_edit', {'record_id': l.id}) }}">{{ l.id }}</a></td>
-                <td>{{ l.text }}</td>
+                <td>{{ l.regexp }}</td>
                 <td>{{ black_list.type(l.type) }}</td>
             </tr>
         {% endfor %}
