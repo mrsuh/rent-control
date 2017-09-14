@@ -23,7 +23,7 @@ class RecordModel
      */
     public function findAll()
     {
-        return $this->dm->find();
+        return $this->dm->find([], ['sort' => ['city' => 1]]);
     }
 
     /**

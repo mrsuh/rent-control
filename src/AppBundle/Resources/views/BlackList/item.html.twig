@@ -7,11 +7,11 @@
 
 {% block form %}
 
-    <div class="form-group {{ (form.text.vars.errors|length ? 'has-error' : '') }}">
-        {{ form_label(form.text, 'Text', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+    <div class="form-group {{ (form.regexp.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.regexp, 'Regexp', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
         <div class="col-lg-10">
-            {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'text' }}) }}
-            {{ form_errors(form.text) }}
+            {{ form_widget(form.regexp, {'attr': {'class': 'form-control', 'placeholder': '^\d+$' }}) }}
+            {{ form_errors(form.regexp) }}
         </div>
     </div>
 
