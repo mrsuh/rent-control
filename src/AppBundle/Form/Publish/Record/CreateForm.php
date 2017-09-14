@@ -3,6 +3,7 @@
 namespace AppBundle\Form\Publish\Record;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
@@ -50,6 +51,13 @@ class CreateForm extends AbstractType
                 TextType::class,
                 [
                     'required'    => true,
+                    'constraints' => [new NotBlank()]
+                ]
+            )->add(
+                'active',
+                CheckboxType::class,
+                [
+                    'required'    => false,
                     'constraints' => [new NotBlank()]
                 ]
             )->add(

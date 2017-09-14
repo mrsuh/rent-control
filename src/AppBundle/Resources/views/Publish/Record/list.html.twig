@@ -17,8 +17,8 @@
             <th>name</th>
             <th>city</th>
             <th>user</th>
-            <th>group id</th>
             <th>link</th>
+            <th>active</th>
         </tr>
         </thead>
         <tbody>
@@ -27,8 +27,8 @@
                 <td><a href="{{ path('app_view_publish_record_record_edit', {'record_id': l.id }) }}">{{ l.name }}</a></td>
                 <td>{{ l.city }}</td>
                 <td>{{ l.link }}</td>
-                <td>{{ l.groupId }}</td>
                 <td>{{ l.user }}</td>
+                <td>{{ l.active ? '+' : '' }}</td>
             </tr>
         {% endfor %}
         </tbody>
