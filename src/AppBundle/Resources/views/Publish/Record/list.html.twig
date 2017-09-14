@@ -14,19 +14,18 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>name</th>
             <th>city</th>
-            <th>user</th>
             <th>link</th>
+            <th>user</th>
             <th>active</th>
         </tr>
         </thead>
         <tbody>
         {% for l in list %}
             <tr>
-                <td><a href="{{ path('app_view_publish_record_record_edit', {'record_id': l.id }) }}">{{ l.name }}</a></td>
-                <td>{{ l.city }}</td>
-                <td>{{ l.link }}</td>
+                <td></td>
+                <td><a href="{{ path('app_view_publish_record_record_edit', {'record_id': l.id }) }}">{{ l.city }}</a></td>
+                <td><a href="{{ l.link }}" target="_blank">{{ l.link }}</a></td>
                 <td>{{ l.user }}</td>
                 <td>{{ l.active ? '+' : '' }}</td>
             </tr>
