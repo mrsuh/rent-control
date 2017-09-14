@@ -34,7 +34,7 @@ class BlackListModel
      */
     public function findAll()
     {
-        return $this->dm_black_list->find();
+        return $this->dm_black_list->find([], ['sort' => ['type' => 1]]);
     }
 
     /**
