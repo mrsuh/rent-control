@@ -39,7 +39,7 @@ class CreateForm extends AbstractType
                 'has_subway',
                 CheckboxType::class,
                 [
-                    'required'    => true,
+                    'required'    => false,
                     'constraints' => [new NotBlank()]
                 ]
             )->add(
