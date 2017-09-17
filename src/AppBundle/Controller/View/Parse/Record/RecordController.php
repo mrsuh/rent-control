@@ -43,11 +43,11 @@ class RecordController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             try {
 
-                $this->get('model.document.parse.record')->create($form->getData());
+                $record = $this->get('model.document.parse.record')->create($form->getData());
 
                 $this->addFlash(Message::SUCCESS, 'Success');
 
-                return $this->redirectToRoute('app_view_parse_record_record_list');
+                return $this->redirectToRoute('app_view_parse_record_source_list', ['record_id' => $record->getId()]);
             } catch (AppException $e) {
                 $this->addFlash(Message::WARNING, $e->getMessage());
             } catch (\Exception $e) {
