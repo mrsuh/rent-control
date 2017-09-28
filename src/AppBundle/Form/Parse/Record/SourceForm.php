@@ -27,6 +27,7 @@ class SourceForm extends AbstractType
                     'choices'     => [
                         Source::TYPE_VK_COMMENT => Source::TYPE_VK_COMMENT,
                         Source::TYPE_VK_WALL    => Source::TYPE_VK_WALL,
+                        Source::TYPE_AVITO      => Source::TYPE_AVITO
                     ]
                 ]
             )->add(
@@ -54,7 +55,7 @@ class SourceForm extends AbstractType
 
                 $decoded = json_decode($parameters, true);
 
-                if(!is_array($decoded)) {
+                if (!is_array($decoded)) {
                     $form->get('parameters')->addError(new FormError('Invalid json'));
                 }
 
