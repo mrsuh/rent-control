@@ -58,7 +58,7 @@ services:
     model.document.black_list:
        class: AppBundle\Model\Document\BlackList\BlackListModel
        arguments:
-           - '@dm.control'
+           - '@dm.default'
 
     model.document.city:
        class: AppBundle\Model\Document\City\CityModel
