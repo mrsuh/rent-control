@@ -26,7 +26,7 @@
             <tr>
                 <td><a href="{{ path('app_view_parse_record_source_edit', {'record_id': app.request.get('record_id'), 'source_id': l.id}) }}">{{ l.id }}</a></td>
                 <td>{{ l.type }}</td>
-                <td>{{ l.link }}</td>
+                <td><a href="{{ l.link }}" target="_blank">{{ l.link }}</a></td>
                 <td>{{ l.parameters }}</td>
             </tr>
         {% endfor %}
