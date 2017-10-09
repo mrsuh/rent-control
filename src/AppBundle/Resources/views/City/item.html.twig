@@ -23,6 +23,14 @@
         </div>
     </div>
 
+    <div class="form-group {{ (form.vk_id.vars.errors|length ? 'has-error' : '') }}">
+        {{ form_label(form.short_name, 'Vk id', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form.vk_id, {'attr': {'class': 'form-control', 'placeholder': '1' }}) }}
+            {{ form_errors(form.vk_id) }}
+        </div>
+    </div>
+
     <div class="form-group {{ (form.picture_link.vars.errors|length ? 'has-error' : '') }}">
         {{ form_label(form.picture_link, 'Picture link', {'label_attr': {'class': 'control-label col-lg-2'}}) }}
         <div class="col-lg-10">

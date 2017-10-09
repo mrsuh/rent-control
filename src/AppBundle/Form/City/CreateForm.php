@@ -29,6 +29,13 @@ class CreateForm extends AbstractType
                     'constraints' => [new NotBlank()]
                 ]
             )->add(
+                'vk_id',
+                TextType::class,
+                [
+                    'required'    => true,
+                    'constraints' => [new NotBlank()]
+                ]
+            )->add(
                 'picture_link',
                 TextType::class,
                 [
