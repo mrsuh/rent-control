@@ -19,11 +19,20 @@ class RecordModel
     }
 
     /**
-     * @return array|Record[]
+     * @return Record[]
      */
     public function findAll()
     {
         return $this->dm->find([], ['sort' => ['city' => 1]]);
+    }
+
+    /**
+     * @param string $city
+     * @return Record[]
+     */
+    public function findByCity(string $city)
+    {
+        return $this->dm->find(['city' => $city], ['sort' => ['city' => 1]]);
     }
 
     /**
