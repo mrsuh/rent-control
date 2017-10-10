@@ -8,6 +8,18 @@
 {% block content %}
 
     <a href="{{ path('app_view_parse_record_record_create') }}" class="btn btn-primary">New</a>
+
+    <br>
+    <br>
+
+    <select id="js-filter-select" class="form-control" style="max-width: 200px; float: left; margin-right: 5px;">
+        {% for city in cities %}
+            <option value="{{ city.shortName }}">{{ city.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button id="js-filter-btn" class="btn btn-success">Filter</button>
+
     <br>
     <br>
 
@@ -23,7 +35,8 @@
         <tbody>
         {% for l in list %}
             <tr>
-                <td><a href="{{ path('app_view_parse_record_record_edit', {'record_id': l.id }) }}">{{ l.name }}</a></td>
+                <td><a href="{{ path('app_view_parse_record_record_edit', {'record_id': l.id }) }}">{{ l.name }}</a>
+                </td>
                 <td>{{ l.city }}</td>
                 <td><a href="{{ l.link }}" target="_blank">{{ l.link }}</a></td>
                 <td><a href="{{ path('app_view_parse_record_source_list', {'record_id': l.id}) }}">sources</a></td>
@@ -31,5 +44,26 @@
         {% endfor %}
         </tbody>
     </table>
+
+{% endblock %}
+
+{% block js %}
+
+    <script>
+
+        var filter_btn = document.getElementById('js-filter-btn');
+        var filter_select = document.getElementById('js-filter-select');
+
+        var filter = function(e){
+            e.preventDefault();
+
+            var city = filter_select.options[filter_select.selectedIndex].value;
+            var url = window.location;
+            location.href = url.protocol + "//" + url.host + url.pathname + '?city=' + city
+        };
+
+        filter_btn.addEventListener('click', filter);
+
+    </script>
 
 {% endblock %}

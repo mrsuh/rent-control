@@ -20,10 +20,19 @@ class RecordController extends Controller
      * @Route("")
      * @Method({"GET"})
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $list = $this->get('model.document.parse.record')->findAll();
-        return $this->render('AppBundle:Parse\Record:list.html.twig', ['list' => $list]);
+        $city = $request->query->get('city');
+
+        if(null !== $city) {
+            $list = $this->get('model.document.parse.record')->findByCity($city);
+        } else {
+            $list = $this->get('model.document.parse.record')->findAll();
+        }
+
+        $cities = $this->get('model.document.city')->findAll();
+
+        return $this->render('AppBundle:Parse\Record:list.html.twig', ['list' => $list, 'cities' => $cities]);
     }
 
     /**
