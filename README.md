@@ -4,7 +4,7 @@
 ```sh
 sh bin/deploy.sh
 ```
-
+## Configuration
 config/parameters.yml
 ```yml
 parameters:
