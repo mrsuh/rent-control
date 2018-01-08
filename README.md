@@ -1,5 +1,7 @@
 # Rent Control
 
+![Screen](/screen.png)
+
 ## Deploy
 ```sh
 sh bin/deploy.sh
