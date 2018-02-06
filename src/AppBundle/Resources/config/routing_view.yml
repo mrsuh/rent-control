@@ -50,3 +50,7 @@ view.user:
     type:     annotation
     prefix: '/users'
 
+view.statistic:
+    resource: "@AppBundle/Controller/View/Statistic/NoteController.php"
+    type:     annotation
+    prefix: '/statistic'

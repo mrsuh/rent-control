@@ -38,6 +38,14 @@ class NoteModel
     }
 
     /**
+     * @return array|Note[]
+     */
+    public function findPeriod(\DateTime $from, \DateTime $to)
+    {
+        return $this->dm_note->find(['timestamp' => ['$lt' => $to->getTimestamp() , '$gt' => $from->getTimestamp()]]);
+    }
+
+    /**
      * @return null|Note
      */
     public function findOneById($id)

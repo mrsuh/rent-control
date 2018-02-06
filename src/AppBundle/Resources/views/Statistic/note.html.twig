@@ -1,0 +1,73 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block breadcrumbs %}
+    <li><a href="">Statistic</a></li>
+{% endblock %}
+
+{% block content %}
+
+<style>
+    /*#container {*/
+        /*min-width: 310px;*/
+        /*max-width: 800px;*/
+        /*height: 400px;*/
+        /*margin: 0 auto*/
+    /*}*/
+</style>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container"></div>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Source Statistic'
+            },
+            xAxis: {
+                categories: [
+                    {% for label in labels %}
+                    {{ ('"' ~ label ~ '" ,') | raw }}
+                    {% endfor %}
+                ],
+                labels: {
+                    formatter: function () {
+                        var match = this.value.toString().match(/(\d+)\.(\d+)\.(\d+)/);
+                        return match[2]+ '.' + match[3];
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Notes'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: [
+                {% for type, dates in list %}
+                {{ ('{ name: "' ~ type ~ '", data: [') | raw  }}
+                    {% for date, count in dates %}
+                {{ count ~ ','}}
+                    {% endfor %}
+                {{ ']},' }}
+                {% endfor %}
+
+                ]
+        });
+    </script>
+{% endblock %}
